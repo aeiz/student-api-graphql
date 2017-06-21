@@ -222,8 +222,6 @@ export {
 
 export { RoomTypeQuery, RoomTypesQuery } from "./RoomTypeQuery";
 
-export { StudentQuery, StudentsQuery } from "./StudentQuery";
-
 export {
   SectionGradeTypeQuery,
   SectionGradeTypesQuery
@@ -235,6 +233,13 @@ export {
 } from "./SectionRegistrationStatusQuery";
 
 export { SiteQuery, SitesQuery } from "./SiteQuery";
+
+export { StudentQuery, StudentsQuery } from "./StudentQuery";
+
+export {
+  StudentAcademicPeriodProfileQuery,
+  StudentAcademicPeriodProfilesQuery
+} from "./StudentAcademicPeriodProfileQuery";
 
 export {
   StudentClassificationQuery,

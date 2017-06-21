@@ -82,6 +82,9 @@ export { SectionGradeTypeType } from "./SectionGradeTypeType";
 export { SectionRegistrationStatusType } from "./SectionRegistrationStatusType";
 export { SiteType } from "./SiteType";
 export { StudentType } from "./StudentType";
+export {
+  StudentAcademicPeriodProfileType
+} from "./StudentAcademicPeriodProfileType";
 export { StudentClassificationType } from "./StudentClassificationType";
 export { StudentCohortType } from "./StudentCohortType";
 export { StudentGradeType } from "./StudentGradeType";

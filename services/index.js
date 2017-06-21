@@ -75,6 +75,7 @@ export {
 } from "./SectionRegistrationStatusService";
 export { SiteService } from "./SiteService";
 export { StudentService } from "./StudentService";
+export { StudentAcademicPeriodProfileService } from "./StudentAcademicPeriodProfileService";
 export { StudentClassificationService } from "./StudentClassificationService";
 export { StudentClassScheduleService } from "./StudentClassScheduleService";
 export { StudentCohortService } from "./StudentCohortService";
