@@ -78,6 +78,7 @@ export { RoleType } from "./RoleType";
 export { RoomCharacteristicType } from "./RoomCharacteristicType";
 export { RoomType } from "./RoomType";
 export { RoomTypeType } from "./RoomTypeType";
+export { SectionCrossListType } from "./SectionCrossListType";
 export { SectionGradeTypeType } from "./SectionGradeTypeType";
 export { SectionRegistrationStatusType } from "./SectionRegistrationStatusType";
 export { SiteType } from "./SiteType";

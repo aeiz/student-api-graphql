@@ -2081,6 +2081,15 @@ type Query {
   # Retrieves the list of all sites.
   roomTypes: [RoomType]
 
+  # This API returns the details of a section crosslist area by the given ID.
+  sectionCrossList(
+    # The global identifier of the Section Crosslists(GORGUID).
+    id: ID
+  ): SectionCrossList
+
+  # Provides the list of all section crosslists.
+  sectionCrossLists(limit: Int, offset: Int, section: ID): [SectionCrossList]
+
   # This API returns section-grade-types records. The types of section grade type defined are Midterm and Final.
   sectionGradeType(id: String): SectionGradeType
 
@@ -2355,6 +2364,26 @@ type RoomType {
 
   # The type or style of a room's layout. Valid value is classroom.
   type: String
+}
+
+# Section Cross List
+type SectionCrossList {
+  # The global identifier of the Section Crosslists(GORGUID).
+  id: ID
+
+  # The code that identifies the list of cross-listed sections (SSBXLST_XLST_GROUP).
+  code: String
+
+  # The maximum enrollment of the cross-listed section over all included sections.
+  maxEnrollment: Int
+
+  # The maximum number of students allowed in the combined wait-list for the cross-listed sections.
+  maxWaitlist: Int
+
+  # An indicator specifying if all students are placed on the wait-list when any
+  # of the cross-listed sections has reached its maximum enrollment or only when
+  # the combined registration has reached the specified maximum enrollment of the cross-list.
+  waitlist: String
 }
 
 # Section Grade Type

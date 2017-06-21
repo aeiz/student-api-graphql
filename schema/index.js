@@ -52,6 +52,7 @@ const RootQuery = new GraphQLObjectType({
   description: "The root of all StudentAPI queries.",
   fields: () => ({
     about: Queries.AboutQuery,
+
     healthCheck: Queries.HealthCheckQuery,
 
     academicCredential: Queries.AcademicCredentialQuery,
@@ -269,7 +270,10 @@ const RootQuery = new GraphQLObjectType({
     roomTypes: Queries.RoomTypesQuery,
 
     // TODO: sections, A mapping rule does not exist for SECTIONDETAIL.STATUS.V4
-    // TODO: section-crosslists
+
+    sectionCrossList: Queries.SectionCrossListQuery,
+    sectionCrossLists: Queries.SectionCrossListsQuery,
+
     // TODO: section-registrations
 
     sectionGradeType: Queries.SectionGradeTypeQuery,

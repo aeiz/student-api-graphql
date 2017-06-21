@@ -223,6 +223,11 @@ export {
 export { RoomTypeQuery, RoomTypesQuery } from "./RoomTypeQuery";
 
 export {
+  SectionCrossListQuery,
+  SectionCrossListsQuery
+} from "./SectionCrossListQuery";
+
+export {
   SectionGradeTypeQuery,
   SectionGradeTypesQuery
 } from "./SectionGradeTypeQuery";

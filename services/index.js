@@ -69,6 +69,7 @@ export { RestrictionTypeService } from "./RestrictionTypeService";
 export { RoomService } from "./RoomService";
 export { RoomCharacteristicService } from "./RoomCharacteristicService";
 export { RoomTypeService } from "./RoomTypeService";
+export { SectionCrossListService } from "./SectionCrossListService";
 export { SectionGradeTypeService } from "./SectionGradeTypeService";
 export {
   SectionRegistrationStatusService
