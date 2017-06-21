@@ -1,0 +1,2718 @@
+# About the API
+type About {
+  applicationName: String
+  applicationVersion: String
+  name: String
+  version: String
+}
+
+# Academic Credential
+type AcademicCredential {
+  # A global identifier for an academic degree.
+  id: ID
+
+  # An abbreviation used to identify a degree (STVDEGC).
+  abbreviation: String
+
+  # The full name of an academic degree.
+  title: String
+
+  # The type of a degree such as 'degree', 'honorary', 'diploma', 'certificate' (GORSDAV).
+  type: String
+
+  # A full description of an academic degree (GORSDAV).
+  description: String
+}
+
+# Academic Discipline
+type AcademicDiscipline {
+  # A global identifier for an academic discipline.
+  id: ID
+
+  # An abbreviation that identifies an academic discipline (STVMAJR).
+  abbreviation: String
+
+  # The full name of an academic discipline.
+  title: String
+
+  # A type of academic discipline such as 'minor', 'major' and 'concentration'.
+  type: String
+
+  # Reporting
+  reporting: [AcademicDisciplineReportingDetails]
+}
+
+# ReportingDetails
+type AcademicDisciplineReportingDetails {
+  # The ISO 3166 alpha-3 country code for the United States of America.
+  countryCode: String
+
+  # The discipline code in the Classification of Instructional Programs (CIP).
+  cipCode: String
+}
+
+# Academic Honor
+type AcademicHonor {
+  # A global identifier for an academic honor.
+  id: ID
+
+  # A code used to identify a honors (STVHONR_CODE and STVHOND_CODE).
+  code: String
+
+  # The type of an academic honor such as 'award', 'distinction'.
+  type: String
+
+  # The full name of an academic honor (STVHONR_DESC and STVHOND_DESC).
+  title: String
+}
+
+# Academic Level
+type AcademicLevel {
+  # A globally unique identifier of the academic level.
+  id: ID
+
+  # The code that identifies the academic level (e.g. 'UG').
+  code: String
+
+  # The full name of the academic level (e.g. 'Undergraduate').
+  title: String
+}
+
+# Academic Period
+type AcademicPeriod {
+  # A global identifier of an academic time period.
+  id: ID
+
+  # A term within an academic year, such as a Semester.
+  type: String
+
+  # A global identifier of an academic year.
+  parentId: ID
+
+  # The academic year in which term occurs.
+  parent: AcademicPeriod
+
+  # A code that identifies an academic time period.
+  code: String
+
+  # The full name of an academic time period (e.g. 'Fall 2014').
+  title: String
+
+  # The date at which the period ends
+  endOn: String
+  startOn: String
+}
+
+# Academic Period Enrollment Status
+type AcademicPeriodEnrollmentStatus {
+  # A global identifier of a enrollment status (STVESTS_GUID).
+  id: ID
+
+  # A code that identifies a enrollment status (STVESTS_CODE).
+  code: String
+
+  # The full name of a enrollment status (STVESTS_DESC).
+  title: String
+}
+
+# Academic Program
+type AcademicProgram {
+  # The global identifier of an academic program
+  id: ID
+
+  # The full name of an academic program
+  title: String
+
+  # A code that identifies an academic program
+  code: String
+
+  # List of Sites
+  sites: [Site]
+
+  # The global identifier of the level of academic progress that is associated with an academic program
+  academicLevelId: ID
+
+  # The level of academic progress that is associated with an academic program
+  academicLevel: AcademicLevel
+
+  # List of Credentials
+  credentials: [AcademicCredential]
+
+  # The status of an academic program
+  status: String
+  startOn: String
+}
+
+# Academic Standing
+type AcademicStandingType {
+  # A global identifier of a academic standing (STVASTD_GUID).
+  id: ID
+
+  # A code that identifies a academic standing (STVASTD_CODE).
+  code: String
+
+  # The full name of a academic standing (STVASTD_DESC).
+  title: String
+}
+
+# Academic Year
+type AcademicYear {
+  # The Surrogate Id of the STVACYR table
+  id: ID
+
+  # Code value to identify the academic year to which this term code is assigned
+  code: String
+
+  # Description of the academic year associated with the academic year code
+  description: String
+
+  # Optimistic lock token
+  version: String
+}
+
+# Address
+type Address {
+  # The global identifier of the Address (SPRADDR, SOBSBGI)
+  id: ID
+
+  # The address lines of the address, such as a street address, post office box number, or city, region, and postal code
+  addressLines: [String]
+
+  # Place
+  place: Place
+
+  # The latitude of the location
+  latitude: String
+
+  # The longitude of the location
+  longitude: String
+
+  # List of Geographic Areas
+  geographicAreas: [GeographicArea]
+}
+
+# Address Type
+type AddressType {
+  # A globally unique identifier of an address type.
+  id: ID
+
+  # The generally unique code for an address type (STVATYP_CODE).
+  code: String
+
+  # The full name of an address type (STVATYP_DESC).
+  title: String
+
+  # A mapping to a standard type for the address type.
+  addressType: String
+}
+
+# Authentication Token
+type AuthenticationToken {
+  # JSON Web Token
+  token: String
+
+  # Expiration
+  expires: String
+}
+
+# Building
+type Building {
+  # A global identifier of a building to be used in all external references to the building(SLBBLDG).
+  id: ID
+
+  # A code that identifies a building.
+  code: String
+
+  # The full name of the building.
+  title: String
+
+  # The global identifier for Site (STVCAMP).
+  siteId: ID
+
+  # Site
+  site: Site
+}
+
+# Campus Involvement
+type CampusInvolvement {
+  # The global identifier of the campus involvements resource (SGRSACT, SGRSPRT and SHRCOMM)
+  id: ID
+  person: Person
+
+  # The id of the student who is involved in the organization.
+  personId: ID
+  campusOrganization: CampusOrganization
+
+  # The organization in the campus the student is involved with. The id of the campus-organizations resource
+  campusOrganizationId: ID
+
+  # The involvement to the organization started on
+  startOn: String
+
+  # The involvement to the organization ended on
+  endOn: String
+  academicPeriod: AcademicPeriod
+
+  # Academic period in which the student was involved in this organization. The id of the academic-periods resource
+  academicPeriodId: ID
+  role: CampusInvolvementRole
+
+  # Role of the student in the organization. The id of the campus-involvement-roles resource
+  roleId: ID
+}
+
+# Campus Involvement Role
+type CampusInvolvementRole {
+  # The global identifier of the campus involvement roles resource
+  id: ID
+
+  # The full name of the campus involvement roles (STVCOMF_DESC).
+  title: String
+
+  # Code of the role of a persons involvement in an organization (STVCOMF_CODE).
+  code: String
+
+  # The description of the campus involvement roles (N/A in Banner).
+  description: String
+}
+
+# Campus Organization
+type CampusOrganization {
+  # The global identifier of the campus organizations resource (STVACTC and STVCOMT)
+  id: ID
+
+  # The code that identifies the campus organization.
+  code: String
+
+  # The full name of the campus organization.
+  name: String
+
+  # Type of the organizations (eg: athletic, culture)
+  type: String
+
+  # Parent organization to which the campus organization comes under. From Banner
+  # perspective, there is no parent organization defined in this model at this
+  # time hence this property will not be present in the response
+  parentOrganization: String
+}
+
+# Campus Organization Type
+type CampusOrganizationType {
+  # The global identifier of the campus organization types resource
+  id: ID
+
+  # The code that identifies the campus organization type ex: Athletic, Cultural (STVACTP_CODE).
+  code: String
+
+  # The full name of the campus organization type (STVACTP_DESC).
+  title: String
+
+  # The description of the campus organization type (N/A in Banner).
+  description: String
+}
+
+# Citizenship Status
+type CitizenshipStatus {
+  # The globally unique identifier of a citizenship status
+  id: ID
+
+  # A global category of citizenship statuses (enum values- 'citizen', 'nonCitizen')
+  category: String
+
+  # The code that identifies a citizenship status (e.g. 'UK')
+  code: String
+
+  # The full name of a citizenship status (e.g. 'UK Citizen')
+  title: String
+}
+
+# Class
+type Class {
+  # Code value to identify the academic year to which this term code is assigned
+  academicYear: String
+
+  # Description of the academic year associated with the academic year code
+  academicYearDescription: String
+
+  # Field that identifies part-of-term end date(yyyy-MM-dd)
+  completionDate: String
+
+  # Field that identifies the course number associated with the CRN
+  courseNumber: String
+
+  # Field that identifies the course reference number associated with the class section
+  courseReferenceNumber: String
+
+  # Course Registration Status
+  courseRegistrationStatus: CourseRegistrationStatus
+
+  # Course Title
+  courseTitle: String
+
+  # Field that identifies the credit hours associated with the CRN
+  creditHour: String
+
+  # List of Faculty
+  faculty: [Faculty]
+
+  # Field that identifies grading mode code for the section
+  gradingMode: String
+
+  # Field that identifies the grading mode associated with the grading mode code
+  gradingModeDescription: String
+
+  # Field that identifies the instructional method code assigned to the section
+  instructionalMethod: String
+
+  # Field that identifies the instructional method associated with the instructional method code
+  instructionalMethodDescription: String
+
+  # Field that identifies the continuing education indicator
+  ceuInd: Boolean
+
+  # List of Meeting Times
+  meetingTimes: [MeetingTime]
+
+  # Code value to identify the part-of-term for the base part-of-term
+  partOfTerm: String
+
+  # Description of the part-of-term associated with the part-of-term code
+  partOfTermDescription: String
+
+  # Field that identifies the schedule type associated with the schedule type code
+  scheduleDescription: String
+
+  # Field that identifies instructional type code of the section being scheduled
+  scheduleType: String
+
+  # Field that identifies the section number of a course
+  sequenceNumber: String
+
+  # Field that identifies the part-of-term start date(yyyy-MM-dd)
+  startDate: String
+
+  # Field that identifies the subject associated with the CRN
+  subject: String
+
+  # Description of the subject code
+  subjectDescription: String
+
+  # Code value to identify the term
+  term: String
+
+  # Description of the term associated with the term code
+  termDescription: String
+}
+
+# Class Format Details
+type ClassFormatDetail {
+  # Field that identifies instructional type code of the section being scheduled
+  code: String
+
+  # Field that identifies the schedule type associated with the schedule type code
+  description: String
+}
+
+# Class Schedules
+type ClassSchedules {
+  # Lists of Classes
+  studentCourseRegistrations: [Class]
+
+  # Field that identifies the sum of all bill hours registered for the courses in the given term
+  totalBill: String
+
+  # Field that identifies the sum of all credit hours registered for the continuous educational courses in the given term
+  totalCeu: String
+
+  # Field that identifies the sum of all credit hours registered for the courses other then CEU in the given term
+  totalCredit: String
+}
+
+# Country
+type Country {
+  # The ISO 3166-1 alpha-3 country code
+  code: String
+
+  # The name of the country, as used in everyday speech
+  title: String
+
+  # The name of the country when mail is being addressed from an international sender
+  postalTitle: String
+
+  # Region
+  region: Region
+
+  # Sub-Region
+  subRegion: SubRegion
+
+  # The name of the city or town
+  locality: String
+
+  # The mailing postal code
+  postalCode: String
+
+  # A specific set of digits between 00 and 99 assigned to every address. When
+  # combined with the ZIP + 4 code, the delivery point provides a unique
+  # identifier for every deliverable address served by the US Postal Service
+  deliveryPoint: String
+
+  # A subdivision of a US zipcode
+  carrierRoute: String
+
+  # A number used to check for errors in a US ZIP code, delivery point, or carrier route
+  correctionDigit: String
+}
+
+# Country Details
+type CountryDetails {
+  # The code of country (USA)
+  code: String
+
+  # The global category of ethnic origin to which a person belongs. Valid values are nonHispanic, hispanic
+  ethnicCategory: String
+}
+
+# Course
+type Course {
+  # Globally-unique identifier of the course
+  id: String
+
+  # Course number
+  number: String
+
+  # Course title
+  title: String
+
+  # The starting date at which a Course is avalaible to have Sections scheduled to
+  # be taken. When combined with the scheduling ending date, defines the time
+  # period a Course is available for scheduling
+  schedulingStartOn: String
+
+  # The ending date at which a Course is no longer available  to have Sections
+  # scheduled to be taken. When combined with the scheduling start date, defines
+  # the time period a Course is available for scheduling
+  schedulingEndOn: String
+
+  # Globally-unique identifier of subject (STVSUBJ)
+  subjectId: String
+
+  # Subject
+  subject: Subject
+}
+
+# Course Registration Status
+type CourseRegistrationStatus {
+  # Field that identifies the course registration status associated with the CRN
+  code: String
+
+  # Description of the course registration status code
+  description: String
+}
+
+# Allowed values for sort parameter
+enum CoursesSort {
+  number
+  title
+  schedulingStartOn
+  schedulingEndOn
+}
+
+# Credential
+type Credential {
+  # The type of credential, such as 'Person ID', 'Organization ID', 'System ID', etc.
+  type: String
+
+  # The current value of the credential.
+  value: String
+
+  # The date when the credential starts being valid.
+  startOn: String
+
+  # The date when the credential stops being valid.
+  endOn: String
+}
+
+# Allowed values for sort parameter
+enum CreditCategoriesSort {
+  title
+}
+
+# Credit Category
+type CreditCategory {
+  # A global identifier of a credit category.
+  id: ID
+
+  # A human readable reference code to identify a particular credit category.
+  code: String
+
+  # The title of credit category.
+  title: String
+
+  # A description of the substance and nature of a credit category.
+  description: String
+
+  # The higher-level category of academic credits.
+  creditType: String
+}
+
+# Educational Institution
+type EducationalInstitution {
+  # The global identifier of the institution
+  id: ID
+
+  # The full name of the institution from tables STVSBGI, GUBINST
+  title: String
+
+  # The type of the institution
+  type: String
+
+  # Indicates if this is a 'home' or 'external' institution'
+  homeInstitution: String
+}
+
+# Educational Institution Unit
+type EducationalInstitutionUnit {
+  # The global identifier of the educational institution unit
+  id: ID
+
+  # The full name of the unit
+  title: String
+
+  # The type of the unit (e.g., college, division, department, etc.)
+  type: String
+
+  # The global identifier for the Institution
+  parentInstitutionId: ID
+
+  # Parent Institution
+  parentInstitution: EducationalInstitution
+}
+
+# Email
+type Email {
+  # An email address for the person.
+  address: String
+
+  # Specifies if the email is preferred over others of the same type or overall.
+  # Only one email should be set to primary for a person.
+  preference: String
+
+  # Email Type
+  emailType: EmailType
+
+  # The global identifier for the Email Type.
+  emailTypeId: ID
+
+  # A mapping to a standard type for the email type.
+  emailTypeCode: String
+}
+
+# Email Type
+type EmailType {
+  # A globally unique identifier of an email type.
+  id: ID
+
+  # The generally unique code of an email type (GTVEMAL_CODE).
+  code: String
+
+  # The full name of an email type (GTVEMAL_DESC).
+  title: String
+
+  # A mapping to a standard type for the email type.
+  emailType: String
+}
+
+# Enrollment Status
+type EnrollmentStatus {
+  # The global identifier of an enrollment status for use in all external references to an enrollment status (GORGUID).
+  id: ID
+
+  # The human-readable code that identifies an enrollment status (SOBCACT).
+  code: String
+
+  # The status of the enrollment such as 'active','inactive' and 'complete'.
+  status: String
+
+  # The full name of an enrollment status (STVCACT).
+  title: String
+}
+
+# Ethnicity
+type Ethnicity {
+  # Globally-unique identifier of the new ethnicity defined by U.S government. The
+  # valid values are Not Hispanic and Hispanic (GORGUID_GUID)
+  id: ID
+
+  # The ethnic code defined by the U.S. government. Valid values are Hispanic or Latino, Not Hispanic or Latino
+  title: String
+
+  # Reporting
+  reporting: ReportingDetails
+}
+
+# External Education
+type ExternalEducation {
+  # The global identifier of the external education from SORHSCH/SORPCOL/SORDEGR/SHRTRIT/SHRTRAM tables
+  id: ID
+
+  # The global identifier for the Person who was educated at the institution
+  personId: ID
+
+  # Person Record
+  person: Person
+
+  # The global identifier for the Institution where the person studied
+  institutionId: ID
+
+  # Institution
+  institution: EducationalInstitution
+
+  # The global identifier for the Credential (degree, diploma, etc.) the person was awarded at the institution
+  credentialId: String
+
+  # Credential
+  credential: AcademicCredential
+
+  # List of Disciplines
+  disciplines: [AcademicDiscipline]
+
+  # The date when the person's education at the institution began
+  startOn: String
+
+  # The date when the person's education at the institution ended
+  endOn: String
+
+  # A measurement of the student's educational performance at the institution (e.g. GPA)
+  performanceMeasure: String
+
+  # The date the student graduated from the institution
+  graduatedOn: String
+
+  # The date when the institution awarded a credential (e.g. degree) to the person
+  credentialsDate: String
+
+  # The date that the transcript for the student's education was received
+  transcriptReceivedOn: String
+
+  # The size of the class associate with the person's course of study
+  classSize: Int
+
+  # The person's class percentile
+  classPercentile: Int
+
+  # The person's class rank
+  classRank: Int
+}
+
+# Faculty
+type Faculty {
+  # The identification number used to access a person
+  bannerId: String
+
+  # Field that identifies Instructor's display name
+  displayName: String
+
+  # Field that identifies Instructor's email address
+  emailAddress: String
+
+  # Field that identifies Instructor's primary indicator
+  primaryIndicator: Boolean
+
+  # Person identification record for Instructor
+  personIdentification: PersonIdentification
+
+  # Schedule for Instructor
+  schedule: [Class]
+}
+
+# Faculty Advisor
+type FacultyAdvisor {
+  # The identification number used to access a person
+  bannerId: ID
+
+  # Returns true if advisor
+  advisor: Boolean
+
+  # Returns true if faculty
+  faculty: Boolean
+
+  # Person's first name
+  firstName: String
+
+  # Person's last name
+  lastName: String
+
+  # Person's middle name
+  middleName: String
+}
+
+# Geographic Area
+type GeographicArea {
+  # The global identifier of a geographic area(GORGUID).
+  id: ID
+
+  # The code of the area(STVGEOR_CODE-STVGEOD_CODE).
+  code: String
+
+  # The full name of a geographic area (STVGEOR_DESC-STVGEOD_DESC).
+  title: String
+
+  # A category of geographic area type such as 'governmental', 'postal', 'recruitment', 'institutional' and 'fundraising'.
+  category: String
+
+  # The global identifier for the Geographic Area Type.
+  typeId: ID
+
+  # Geographic Area Type
+  type: GeographicAreaType
+
+  # List of Included Areas
+  includedAreas: [GeographicArea]
+}
+
+# Geographic Area Type
+type GeographicAreaType {
+  # The global identifier of a geographic area type(GORGUID).
+  id: ID
+
+  # The code of the geographic area type (STVGEOR_CODE or STVGEOD_CODE)
+  code: String
+
+  # The full name of a geographic area type (STVGEOR_DESC or STVGEOD_DESC).
+  title: String
+
+  # A category of geographic area type such as 'governmental', 'postal', 'recruitment', 'institutional' and 'fundraising'.
+  category: String
+
+  # The description of a geographic area type.
+  description: String
+}
+
+# Grade Change Reason
+type GradeChangeReason {
+  # Globally-unique identifier of the grade change reason (STVGCHG)
+  id: ID
+
+  # The code that identifies the grade change reason (e.g. 'OE')
+  code: String
+
+  # The full name of a grade change reason (e.g. 'Original Entry')
+  title: String
+}
+
+# Grade Definition
+type GradeDefinition {
+  # The global identifier of the grade (SHRGDID_GUID).
+  id: ID
+
+  # The type of the grade.Valid type is literal.
+  type: String
+
+  # The literal value of the grade (SHRGDID_GRADE).
+  value: String
+
+  # The global identifier for Grade Scheme (SHRGDID_GRADE_SCHEME).
+  schemeId: ID
+
+  # Grade Scheme
+  scheme: GradeScheme
+}
+
+# Grade Mode
+type GradeMode {
+  # The global identifier of the grade modes.
+  id: ID
+
+  # The code associated with the grade mode(STVGMOD).
+  code: String
+
+  # The full name of the grade modes.
+  title: String
+}
+
+# Grade Scheme
+type GradeScheme {
+  # A global identifier of a grade scheme (SHRGSCH_GUID).
+  id: ID
+
+  # The code for the grade scheme that may be used a reference or for reporting(SHRGSCH_GRADE_SCHEME_CODE).
+  code: String
+
+  # The full name of a grade scheme.
+  title: String
+
+  # The global identifier for the Academic Level.
+  academicLevelId: ID
+
+  # Academic Level
+  academicLevel: AcademicLevel
+
+  # The global identifier for the Grade Mode.
+  gradeModeId: ID
+
+  # Grade Mode
+  gradeMode: GradeMode
+}
+
+# Retrieves the availability status of the Student API application deployed.
+type HealthCheck {
+  # Student API application’s status information
+  status: String
+}
+
+# Instructional Event
+type InstructionalEvent {
+  # Globally-unique identifier of the instructional-event
+  id: ID
+
+  # Globally unique identifier of the section (SSBSECT)
+  sectionId: String
+
+  # Globally-unique identifier of instructional method (STVSCHD)
+  instructionalMethodId: String
+
+  # Instructional Method
+  instructionalMethod: InstructionalMethod
+
+  # Faculty workload assignment
+  workLoad: Int
+}
+
+# Instructional Method
+type InstructionalMethod {
+  # A global identifier of an instructional method to be used in all external references.
+  id: ID
+
+  # Human readable abbreviated name to an instructional method.
+  abbreviation: String
+
+  # The full name of an instructional method
+  title: String
+}
+
+# Instructional Platform
+type InstructionalPlatform {
+  # A global identifier of an instructional platform to be used in all external references(GORINTG).
+  id: ID
+
+  # Human readable code that identifies a technology platform.
+  code: String
+
+  # The full name of a technology platform.
+  title: String
+}
+
+# Instructor
+type Instructor {
+  # The global identifier of the instructor.
+  id: ID
+
+  # The global identifier for the Primary Location.
+  primaryLocationId: ID
+
+  # Primary Location
+  primaryLocation: Room
+
+  # The global identifier for the Category.
+  categoryId: ID
+
+  # Instructor Category
+  category: InstructorCategory
+
+  # The global identifier for the Staff Type.
+  staffTypeId: ID
+
+  # Instructor Staff Type
+  staffType: InstructorStaffType
+  tenure: InstructorTenure
+}
+
+# Instructor Category
+type InstructorCategory {
+  # The global identifier of the instructor category.
+  id: ID
+
+  # The full name of the instructor category.
+  title: String
+
+  # A code that may be used to identify the instructor category.
+  code: String
+}
+
+# Instructor Staff Type
+type InstructorStaffType {
+  # The global identifier of the instructor staff type.
+  id: ID
+
+  # The full name of the instructor staff type.
+  title: String
+
+  # A code that may be used to identify the instructor staff type.
+  code: String
+}
+
+# Instructor Tenure
+type InstructorTenure {
+  # The global identifier of the instructor tenure type.
+  typeId: ID
+
+  # Instructor Tenure Type
+  type: InstructorTenureType
+
+  # The date when tenure was awarded to the instructor.
+  startOn: String
+
+  # The date the instructor was last reviewed for tenure.
+  reviewedOn: String
+}
+
+# Instructor Tenure Type
+type InstructorTenureType {
+  # The global identifier of the instructor tenure type.
+  id: ID
+
+  # The full name of the instructor tenure type.
+  title: String
+
+  # A code that may be used to identify the tenure status of the instructor.
+  code: String
+}
+
+# Interest
+type InterestType {
+  # A global identifier of a interest record from table STVINTS
+  id: ID
+
+  # The full name of an interest
+  title: String
+
+  # The code for the interest
+  code: String
+}
+
+# Level Details
+type LevelDetail {
+  # Field that identifies the level the registrant is enrolled for the CRN
+  code: String
+
+  # Field that describes the level code associated
+  description: String
+}
+
+# Marital Status
+type MaritalStatus {
+  # The global identifier of a marital status to be used in all external references to a marital status (STVMRTL)
+  id: ID
+
+  # The human readable code that identifies a marital status
+  code: String
+
+  # The full name of a marital status
+  title: String
+
+  # The name of a higher level marital category of which this category is a member
+  maritalCategory: String
+}
+
+# Meeting Time
+type MeetingTime {
+  # Field that identifies the begin time of the course section being scheduled
+  beginTime: String
+
+  # Field that identifies building code meets in
+  building: String
+
+  # Field that identifies the building associated with the building code
+  buildingDescription: String
+
+  # Field that identifies the campus code in which the building is located
+  campus: String
+
+  # Field that identifies the campus associated with the campus code
+  campusDescription: String
+
+  # Field that identifies the session credit hours
+  creditHourSession: String
+
+  # Field that identifies section end date
+  endDate: String
+
+  # Field that identifies the End Time of the course section being scheduled
+  endTime: String
+
+  # Field that identifies section meeting hours per week
+  hoursWeek: Float
+
+  # Field that identifies meeting schedule type code
+  meetingScheduleType: String
+
+  # Field that identifies the room where the course section will be scheduled
+  room: String
+
+  # Field that identifies section meeting start date
+  startDate: String
+
+  # Field that identifies section meeting time Monday indicator
+  monday: Boolean
+
+  # Field that identifies section meeting time Tuesday indicator
+  tuesday: Boolean
+
+  # Field that identifies section meeting time Wednesday indicator
+  wednesday: Boolean
+
+  # Field that identifies section meeting time Thrusday indicator
+  thursday: Boolean
+
+  # Field that identifies section meeting time Friday indicator
+  friday: Boolean
+
+  # Field that identifies section meeting time Saturday indicator
+  saturday: Boolean
+
+  # Field that identifies section meeting time Sunday indicator
+  sunday: Boolean
+}
+
+# These are the things we can change
+type Mutation {
+  # This mutation allows you to authenticate and receive a JWT token to be used on subsequent requests.
+  createAuthenticationToken(
+    # Username
+    username: String
+
+    # Password
+    password: String
+  ): AuthenticationToken
+
+  # This API creates a new academic credential record.
+  createAcademicCredential(abbreviation: String, title: String, id: String, type: String, description: String): AcademicCredential
+
+  # This API allows to update an academic credential with given ID.
+  updateAcademicCredential(abbreviation: String, title: String, id: String, type: String, description: String): AcademicCredential
+}
+
+# Person Name
+type Name {
+  # The person's title. For example, 'Mr.', 'Mrs.', or 'Dr.''.
+  title: String
+
+  # The person's full name.
+  fullName: String
+
+  # The person's first, or given, name.
+  firstName: String
+
+  # The person's middle name.
+  middleName: String
+
+  # The person's last, or family, name.
+  lastName: String
+
+  # The article or preposition portion of a person's last name. For example, 'De la', 'Van', or 'Van der Von'.
+  lastNamePrefix: String
+
+  # The person's pedigree. For example, 'Jr.' or 'Sr.'.
+  pedigree: String
+
+  # A post-nominal professional abbreviation, reflecting an earned degree or honor. For example, 'M.D.' or 'Ph.D.'.
+  professionalAbbreviations: String
+
+  # Indicates the preferred name for the person. Only one name should be set to preferred for a person.
+  preference: String
+
+  # A global identifier of a person name type.
+  typeId: ID
+
+  # Name Type
+  type: PersonNameType
+
+  # The type of a person's name being defined. For example, a 'Primary' name.
+  typeCategory: String
+}
+
+# Allowed values for order parameter
+enum OrderAscDescArgs {
+  asc
+  desc
+}
+
+# Organization
+type Organization {
+  # The global identifier of the organization.
+  id: ID
+
+  # The full name of the organization.
+  title: String
+
+  # The description of the organization.
+  description: String
+
+  # List of Roles
+  roles: [Role]
+
+  # List of Credentials
+  credentials: [Credential]
+
+  # List of Addresses
+  addresses: [Address]
+
+  # List of Phones
+  phones: [Phone]
+
+  # List of Email Addresses
+  emails: [Email]
+}
+
+# Allowed values for role parameter
+enum OrganizationsRoleArgEnumVendor {
+  vendor
+}
+
+# Person
+type Person {
+  # A global identifier of a person.
+  id: ID
+
+  # Banner ID
+  bannerId: String
+
+  # List of Names Associated with Person
+  names: [Name]
+
+  # The date when a person was born.
+  dateOfBirth: String
+
+  # The date when a person died.
+  dateDeceased: String
+
+  # The biological or social cultural masculinity or femininity of the person.
+  gender: String
+
+  # Privacy Status Information
+  privacyStatus: PrivacyStatus
+
+  # The global identifier for the Religion.
+  religionId: String
+
+  # Religion Information
+  religion: [Religion]
+
+  # List of Races
+  races: [RaceType]
+
+  # List of Roles
+  roles: [Role]
+
+  # Martial Status
+  maritalStatus: MaritalStatus
+
+  # A global category of citizenship statuses.
+  citizenshipStatusCategory: String
+
+  # The global identifier for the Detail.
+  citizenshipStatusDetailId: String
+
+  # The ISO 3166-1 alpha-3 code of the country which the person was born in
+  countryOfBirth: String
+
+  # The country in which the person is a citizen.
+  citizenshipCountry: String
+
+  # Identification
+  identification: PersonIdentification
+
+  # List of Credentials
+  credentials: [Credential]
+
+  # List of Interests
+  interests: [InterestType]
+
+  # List of Visas
+  visas: [PersonVisa]
+
+  # List of Restriction Types for Person
+  restrictionTypes: [RestrictionType]
+
+  # List of Addresses
+  addresses: [Address]
+
+  # List of Phones
+  phones: [Phone]
+
+  # List of Email Addresses
+  emails: [Email]
+
+  # Schedule of Classes
+  classSchedule: ClassSchedules
+
+  # Student Record
+  student: Student
+
+  # List of Student Grades
+  studentGrades: [StudentGrade]
+
+  # List of Student Holds
+  studentHolds: [StudentHold]
+}
+
+# Personal Relationship Type
+type PersonalRelationshipType {
+  # The global identifier of the personal relationship types resource
+  id: ID
+
+  # The full name of the personal relationship type(STVRELT_DESC).
+  title: String
+
+  # The description of the personal relationship type (N/A in Banner).
+  description: String
+
+  # The type of relationships between two people. Enumeration field and for the
+  # list of enumerations supported please refer the schema
+  relationshipType: String
+
+  # The code that identifies the personal relationship type(STVRELT_CODE).
+  code: String
+}
+
+# Person Credentials
+type PersonCredentials {
+  # List of Credentials
+  credentials: [Credential]
+
+  # A global identifier for person.
+  personId: String
+
+  # Person Record
+  person: Person
+}
+
+# Person Filter
+type PersonFilter {
+  # A global identifier of a named person filter collection. (GLBEXTR)
+  id: ID
+
+  # The code of a person filter.
+  code: String
+
+  # The full name of a person filter.
+  title: String
+}
+
+# Allowed values for sort parameter
+enum PersonFiltersSort {
+  code
+}
+
+# Person Hold
+type PersonHold {
+  # A global identifier for person hold.
+  id: ID
+
+  # A global identifier for person.
+  personId: String
+
+  # Person
+  person: Person
+
+  # The category for person hold type 'academic', 'finacial'.
+  typeCategory: String
+
+  # A global identifier for person hold type.
+  typeId: String
+
+  # Person Hold Type
+  type: PersonHoldType
+
+  # Start date for person hold(SPRHOLD).
+  startOn: String
+
+  # End date for person hold(SPRHOLD).
+  endOn: String
+}
+
+# Person Hold Type
+type PersonHoldType {
+  # The global identifier of a person hold type.
+  id: ID
+
+  # The code of a person hold type(STVHLDD_CODE).
+  code: String
+
+  # The full name of a person hold type(STVHLDD_DESC).
+  title: String
+
+  # A global category of person hold type such as 'academic', 'administrative',
+  # 'disciplinary', 'financial' and 'health'. Only 'academic' or 'financial' are displayed.
+  category: String
+}
+
+# Person Identification
+type PersonIdentification {
+  # The identification number used to access a person
+  bannerId: String
+
+  # The name of the originator of the data
+  dataOrigin: String
+
+  # The identifier used by BEIS for identity synchronization
+  enterpriseId: String
+
+  # Person's first name
+  firstName: String
+
+  # Person's middle name
+  middleName: String
+
+  # Person's last name
+  lastName: String
+
+  # Person's full name
+  fullName: String
+
+  # The article or preposition portion of a person's last name
+  surnamePrefix: String
+
+  # A globally unique identifier of the person
+  guid: String
+
+  # Person Record
+  person: Person
+
+  # The Permanent, unique identifier for a person required for IMS data transfers
+  imsSourcedId: String
+
+  # Third Party Access
+  thirdPartyAccess: ThirdPartyAccess
+}
+
+# Person Name Type
+type PersonNameType {
+  # A global identifier of a person name type.
+  id: ID
+
+  # The code of the person name type(GTVNTYP_CODE).
+  code: String
+
+  # The full name of the person name type(GTVNTYP_DESC).
+  title: String
+
+  # The global category of person name types such as 'personal', 'birth' and 'legal'.
+  category: String
+}
+
+# Person Visa
+type PersonVisa {
+  # A global identifier of a visa record
+  id: ID
+
+  # The global identifier for the Person to whom the visa was issued
+  personId: ID
+
+  # Person
+  person: Person
+
+  # The global identifier for the type of visa
+  visaTypeId: ID
+
+  # Visa Type
+  visaType: VisaType
+
+  # A global category of visa types
+  visaCategory: String
+
+  # The identifier of the visa
+  visaId: String
+
+  # Visa status
+  status: String
+
+  # The date when the visa was requested
+  requestedOn: String
+
+  # The date when the visa was issued
+  issuedOn: String
+
+  # The visa expiration date
+  expiresOn: String
+}
+
+# Phone
+type Phone {
+  # Specifies if the phone is preferred over others of the same type.
+  preference: String
+
+  # The country calling code of telephone and/or mobile device when dialing internationally.
+  countryCallingCode: String
+
+  # The number assigned to the phone.
+  number: String
+
+  # The extension used to connect to the phone when multiple phones share the same primary number.
+  extension: String
+
+  # Phone Type
+  phoneType: PhoneType
+
+  # A mapping to a standard type for the phone type.
+  phoneTypeType: ID
+
+  # The global identifier for the Phone Type.
+  phoneTypeId: ID
+}
+
+# Phone Type
+type PhoneType {
+  # A globally unique identifier of a type of phone.
+  id: ID
+
+  # The code that identifies a phone type(STVTELE_CODE).
+  code: String
+
+  # The full name of a type of phone(STVTELE_DESC).
+  title: String
+
+  # A mapping to a standard type for the phone type.
+  phoneType: String
+}
+
+# Place
+type Place {
+  # Country
+  country: Country
+}
+
+# Privacy Status
+type PrivacyStatus {
+  # The global category of information privacy protection.
+  privacyCategory: String
+}
+
+# The root of all StudentAPI queries.
+type Query {
+  # Retrieves the current version details of the Student API application deployed.
+  about: About
+
+  # Retrieves the availability status of the Student API application deployed.
+  healthCheck: HealthCheck
+
+  # This API returns the details of a specific academic credential by the given ID.
+  academicCredential(
+    # A global identifier for an academic degree.
+    id: ID
+  ): AcademicCredential
+
+  # Provides the list of all credentials.
+  academicCredentials(limit: Int, offset: Int, sort: SortByTypeOrAbbreviation, order: OrderAscDescArgs, type: String): [AcademicCredential]
+
+  # This API returns the details of a specific academic discipline by the given ID.
+  academicDiscipline(
+    # A global identifier for an academic discipline.
+    id: ID
+  ): AcademicDiscipline
+
+  # Provides the list of all disciplines.
+  academicDisciplines(limit: Int, offset: Int, sort: SortByTypeOrAbbreviation, order: OrderAscDescArgs, type: String): [AcademicDiscipline]
+
+  # This API returns the details of a specific academic-honors by the given ID.
+  academicHonor(
+    # A global identifier for an academic honor.
+    id: ID
+  ): AcademicHonor
+
+  # Provides the list of all honors.
+  academicHonors(limit: Int, offset: Int, sort: String, order: OrderAscDescArgs, type: String): [AcademicHonor]
+
+  # This API returns a academic level data by given ID.
+  academicLevel(
+    # A globally unique identifier of the academic level.
+    id: ID
+  ): AcademicLevel
+
+  # Provides the list of academic levels.
+  academicLevels(limit: Int, offset: Int, sort: SortByCodeOrTitle, order: OrderAscDescArgs): [AcademicLevel]
+
+  # This API returns an Academic Period data by the given ID.
+  academicPeriod(
+    # A globally unique identifier of the academic period.
+    id: ID
+  ): AcademicPeriod
+
+  # Retrieves the list of all Academic Periods.
+  academicPeriods(limit: Int, offset: Int, sort: SortByCodeOrTitle, order: OrderAscDescArgs): [AcademicPeriod]
+
+  # Returns the academic period enrollment status resource for a given ID.
+  academicPeriodEnrollmentStatus(
+    # A globally unique identifier of the academic period enrollment status.
+    id: ID
+  ): AcademicPeriodEnrollmentStatus
+
+  # Provide the list of academic period enrollment statuses.
+  academicPeriodEnrollmentStatuses(limit: Int, offset: Int, sort: SortByCodeOrTitle, order: OrderAscDescArgs): [AcademicPeriodEnrollmentStatus]
+
+  # The API retrieves academic program record for a given id.
+  academicProgram(
+    # A global identifier of an academic program record.
+    id: ID
+  ): AcademicProgram
+
+  # Provides the list of academic programs.
+  academicPrograms(limit: Int, offset: Int): [AcademicProgram]
+
+  # Returns the academic standing resource for a given ID.
+  academicStanding(
+    # A globally unique identifier of the academic standing.
+    id: ID
+  ): AcademicStandingType
+
+  # Retrieves the list of all academic standings.
+  academicStandings(limit: Int, offset: Int, sort: SortByCodeOrTitle, order: OrderAscDescArgs): [AcademicStandingType]
+
+  # This API returns an address record by given id.
+  address(
+    # The global identifier of the Address (SPRADDR, SOBSBGI)
+    id: ID
+  ): Address
+
+  # This API returns a list of Addresses information.
+  addresses(limit: Int, offset: Int): [Address]
+
+  # This API returns a address type data for a given ID.
+  addressType(
+    # A globally unique identifier of an address type.
+    id: ID
+  ): AddressType
+
+  # Provides the list of address types.
+  addressTypes(limit: Int, offset: Int): [AddressType]
+
+  # This API returns a building data by given ID.
+  building(
+    # A global identifier of a building to be used in all external references to the building(SLBBLDG).
+    id: ID
+  ): Building
+
+  # Provides the list of buildings.
+  buildings(
+    # A globally unique identifier(STVCAMP)
+    siteId: String
+    limit: Int
+    offset: Int
+    sort: SortByCodeOrTitle
+    order: OrderAscDescArgs
+  ): [Building]
+
+  # Returns the student and their activities, sports and committees for a given ID.
+  campusInvolvement(
+    # The global identifier of the campus involvements resource (SGRSACT, SGRSPRT and SHRCOMM)
+    id: ID
+  ): CampusInvolvement
+
+  # Provide the list of student and their activities, sports and committees in Banner.
+  campusInvolvements(limit: Int, offset: Int): [CampusInvolvement]
+
+  # Returns the committee function for a given ID.
+  campusInvolvementRole(
+    # The global identifier of the campus involvement roles resource
+    id: ID
+  ): CampusInvolvementRole
+
+  # Provide the list of committee functions in Banner.
+  campusInvolvementRoles(limit: Int, offset: Int): [CampusInvolvementRole]
+  campusOrganization(
+    # The global identifier of the campus organizations resource (STVACTC and STVCOMT)
+    id: ID
+  ): CampusOrganization
+  campusOrganizations(limit: Int, offset: Int): [CampusOrganization]
+
+  # Returns the student activity type for a given ID.
+  campusOrganizationType(
+    # The global identifier of the campus organization types resource
+    id: ID
+  ): CampusOrganizationType
+
+  # Provide the list of student activity types in Banner.
+  campusOrganizationTypes(limit: Int, offset: Int): [CampusOrganizationType]
+
+  # This API returns a citizenship status data by given ID.
+  citizenshipStatus(
+    # The globally unique identifier of a citizenship status
+    id: ID
+  ): CitizenshipStatus
+
+  # Provides the list of Citizenship Statuses.
+  citizenshipStatuses(limit: Int, offset: Int, sort: SortByCodeOrTitle, order: OrderAscDescArgs, type: String): [CitizenshipStatus]
+  classSchedules(bannerId: ID, termCode: String): ClassSchedules
+
+  # This API returns a course data by given id.
+  course(
+    # Globally-unique identifier of the course
+    id: ID
+  ): Course
+
+  # This API returns a list of courses.
+  courses(
+    limit: Int
+    offset: Int
+    sort: CoursesSort
+    order: OrderAscDescArgs
+    subject: ID
+    number: String
+    owningInstitutionUnits: ID
+    title: String
+
+    # Date in format: yyyy-MM-dd’T’HH:mm:ssZ
+    schedulingStartOn: String
+
+    # Date in format: yyyy-MM-dd’T’HH:mm:ssZ
+    schedulingEndOn: String
+    academicLevels: ID
+    instructionalMethods: ID
+  ): [Course]
+
+  # This API returns credit category data by given ID.
+  creditCategory(
+    # A global identifier of a credit category.
+    id: ID
+  ): CreditCategory
+
+  # Provides the list of credit categories.
+  creditCategories(limit: Int, offset: Int, sort: CreditCategoriesSort, order: OrderAscDescArgs): [CreditCategory]
+
+  # This API returns an educational institution record for the given id.
+  educationalInstitution(
+    # A global identifier of an educational institution record
+    id: ID
+  ): EducationalInstitution
+
+  # This API returns list of educational institution records.
+  educationalInstitutions(limit: Int, offset: Int, sort: String, order: OrderAscDescArgs, type: String): [EducationalInstitution]
+
+  # This API returns an educational institution unit record for the given id.
+  educationalInstitutionUnit(
+    # The global identifier of the educational institution unit
+    id: ID
+  ): EducationalInstitutionUnit
+
+  # This API returns list of educational institution unit records.
+  educationalInstitutionUnits(limit: Int, offset: Int, sort: String, order: OrderAscDescArgs, type: String): [EducationalInstitutionUnit]
+
+  # This API returns a email type data by given ID.
+  emailType(
+    # A globally unique identifier of an email type.
+    id: ID
+  ): EmailType
+
+  # Provides the list of email types.
+  emailTypes(limit: Int, offset: Int): [EmailType]
+
+  # This API returns the details of a specific enrollment status by the given ID.
+  enrollmentStatus(
+    # The global identifier of an enrollment status for use in all external references to an enrollment status(GORGUID).
+    id: ID
+  ): EnrollmentStatus
+
+  # This API returns the list of active enrollment statuses.
+  enrollmentStatuses(limit: Int, offset: Int): [EnrollmentStatus]
+  ethnicity(
+    # Globally-unique identifier of the new ethnicity defined by U.S government.
+    # The valid values are Not Hispanic and Hispanic (GORGUID_GUID)
+    id: ID
+  ): Ethnicity
+  ethnicities: [Ethnicity]
+
+  # This API returns an external education record for the given id.
+  externalEducation(
+    # A global identifier of an external education record
+    id: ID
+  ): ExternalEducation
+
+  # This API returns a list of external education records for all students.
+  externalEducations(limit: Int, offset: Int): [ExternalEducation]
+  facultyAdvisor(
+    # The identification number used to access a person
+    bannerId: ID
+
+    # Code value to identify the term
+    term: String
+  ): FacultyAdvisor
+
+  # This API returns the details of a specific geographic area by the given ID.
+  geographicArea(
+    # The global identifier of a geographic area type (GORGUID).
+    id: ID
+  ): GeographicArea
+
+  # Provides the list of all geographic areas.
+  geographicAreas(limit: Int, offset: Int): [GeographicArea]
+
+  # This API returns the details of a specific geographic area type by the given ID.
+  geographicAreaType(
+    # The global identifier of a geographic area type (GORGUID).
+    id: ID
+  ): GeographicAreaType
+
+  # Provides the list of all geographic area types.
+  geographicAreaTypes(limit: Int, offset: Int): [GeographicAreaType]
+
+  # This API returns a grade change reason data by given ID. by the given ID.
+  gradeChangeReason(
+    # Globally-unique identifier of the grade change reason (STVGCHG)
+    id: ID
+  ): GradeChangeReason
+
+  # Provides the list of grade-change-reasons.
+  gradeChangeReasons(limit: Int, offset: Int, sort: SortByCodeOrTitle, order: OrderAscDescArgs): [GradeChangeReason]
+
+  # This API returns a valid grade by given ID.
+  gradeDefinition(
+    # The global identifier of the grade (SHRGDID_GUID).
+    id: ID
+  ): GradeDefinition
+
+  # Provides the list of valid grades.
+  gradeDefinitions(limit: Int, offset: Int): [GradeDefinition]
+
+  # This API returns a grade mode data by given ID.
+  gradeMode(
+    # The global identifier of the grade modes.
+    id: ID
+  ): GradeMode
+
+  # Provides the list of grade modes.
+  gradeModes(limit: Int, offset: Int, sort: SortByCodeOrTitle, order: OrderAscDescArgs): [GradeMode]
+
+  # This API returns a grade scheme data by given ID.
+  gradeScheme(
+    # A global identifier of a grade scheme (SHRGSCH_GUID).
+    id: ID
+  ): GradeScheme
+
+  # Provides the list of grade schemes.
+  gradeSchemes(limit: Int, offset: Int, sort: SortByCode, order: OrderAscDescArgs): [GradeScheme]
+
+  # This API retrieves meeting records (SSRMEET), room and faculty assignments (SIRASGN) based on given ID.
+  instructionalEvent(
+    # Globally-unique identifier of the instructional-event
+    id: ID
+  ): InstructionalEvent
+
+  # This API retrieves meeting records (SSRMEET), room and faculty assignments (SIRASGN)
+  instructionalEvents(
+    limit: Int
+    offset: Int
+
+    # Globally-unique identifier of a person
+    instructor: ID
+  ): [InstructionalEvent]
+
+  # This API returns an instructional method data by given ID.
+  instructionalMethod(
+    # A global identifier of an instructional method to be used in all external references.
+    id: ID
+  ): InstructionalMethod
+
+  # Provides the list of instructional methods.
+  instructionalMethods(limit: Int, offset: Int, sort: SortByTitleOrAbbreviation, order: OrderAscDescArgs): [InstructionalMethod]
+
+  # This API returns an instructional platform data by given ID.
+  instructionalPlatform(
+    # A global identifier of an instructional method to be used in all external references.
+    id: ID
+  ): InstructionalPlatform
+
+  # The instructional platform determines system that will provide learning
+  # platform for students. This API retrieves list of instructional platform data
+  # from integration partner code table. The instructional platform retrieves the
+  # title, abbreviation and description details. The retrieved details are
+  # incorporated in the section API in which GUID, title, and abbreviation are seen.
+  instructionalPlatforms(limit: Int, offset: Int, sort: SortByCodeOrTitle, order: OrderAscDescArgs): [InstructionalPlatform]
+
+  # Provide a instructor record for the given id.
+  instructor(
+    # A global identifier of a instructor record
+    id: ID
+  ): Instructor
+
+  # Provide the list of instructors.
+  instructors(limit: Int, offset: Int, instructor: ID): [Instructor]
+
+  # Provide an instructor category record for the given id.
+  instructorCategory(
+    # A global identifier of an instructor category record.
+    id: ID
+  ): InstructorCategory
+
+  # Provide the list of instructor categories.
+  instructorCategories(limit: Int, offset: Int): [InstructorCategory]
+
+  # Provide an instructor staff type record for the given id.
+  instructorStaffType(
+    # A global identifier of an instructor staff type record.
+    id: ID
+  ): InstructorStaffType
+
+  # Provide the list of instructor staff types.
+  instructorStaffTypes(limit: Int, offset: Int): [InstructorStaffType]
+
+  # Provide an instructor tenure type record for the given id.
+  instructorTenureType(
+    # A global identifier of an instructor tenure type record.
+    id: ID
+  ): InstructorTenureType
+
+  # Provide the list of instructor tenure types.
+  instructorTenureTypes(limit: Int, offset: Int): [InstructorTenureType]
+
+  # The API retrieves interest record for a given ID.
+  interest(
+    # A global identifier of a interest record
+    id: ID
+  ): InterestType
+
+  # Provides the list of interests that can be recorded on a person or organization profile.
+  interests(limit: Int, offset: Int): [InterestType]
+
+  # This API returns a marital status data by given id.
+  maritalStatus(
+    # The global identifier of a marital status to be used in all external references to a marital status (STVMRTL)
+    id: ID
+  ): MaritalStatus
+
+  # Provides the list of marital statuses.
+  maritalStatuses(limit: Int, offset: Int, sort: SortByCodeOrTitle, order: OrderAscDescArgs): [MaritalStatus]
+
+  # This API returns an organization data by given ID from SPRIDEN.
+  organization(
+    # The global identifier of the organization.
+    id: ID
+  ): Organization
+
+  # Retrieves the list of all non-person records from SPRIDEN.
+  organizations(limit: Int, offset: Int, role: OrganizationsRoleArgEnumVendor): [Organization]
+
+  # This API returns a person data by given ID.
+  person(
+    # A global identifier of a person.
+    id: ID
+  ): Person
+
+  # Retrieves the list of all persons.
+  persons(limit: Int, offset: Int, sort: String, order: String, role: String, personFilter: String, credentialType: String, credentialValue: String): [Person]
+
+  # This API returns a person credentials by given id.
+  personCredentials(
+    # A global identifier for person.
+    id: ID
+  ): PersonCredentials
+
+  # This API provides a list of all persons credentials.
+  personsCredentials(limit: Int, offset: Int): [PersonCredentials]
+
+  # This API returns the details of a specific person hold for a given ID.
+  personFilter(
+    # A global identifier for person hold.
+    id: ID
+  ): PersonFilter
+
+  # This API returns the list of population selections.
+  personFilters(limit: Int, offset: Int, sort: PersonFiltersSort, order: OrderAscDescArgs, code: String): [PersonFilter]
+
+  # This API returns the details of a specific person hold for a given ID.
+  personHold(
+    # A global identifier for person hold.
+    id: ID
+  ): PersonHold
+
+  # Provides the list of all persons holds.
+  personHolds(
+    limit: Int
+    offset: Int
+
+    # A global identifier for a person.
+    person: ID
+  ): [PersonHold]
+
+  # The API retrieves visa records for a given id.
+  personVisa(
+    # A global identifier of a visa record
+    id: ID
+  ): PersonVisa
+
+  # Provides the list of person visas.
+  personVisas(
+    # A global identifier of a person.
+    person: ID
+    limit: Int
+    offset: Int
+  ): [PersonVisa]
+
+  # This API returns the details of a specific hold type for a given ID.
+  personHoldType(
+    # The global identifier of a person hold type.
+    id: ID
+  ): PersonHoldType
+
+  # Provides the list of all hold types defined for a person.
+  personHoldTypes(limit: Int, offset: Int): [PersonHoldType]
+
+  # Retrieves identification information for person matching the bannerId provided.
+  personIdentification(
+    # The identification number used to access a person
+    bannerId: ID
+  ): PersonIdentification
+
+  # Retrieves the list of all the various identification information for persons matching the identifiers provided.
+  personIdentifications(
+    # The identification number used to access a person
+    bannerId: String
+
+    # The identifier used by BEIS for identity synchronization
+    enterpriseId: String
+
+    # The identifier used in GOBTPAC for mapping ldap authentication (GOBTPAC_LDAP_USER)
+    ldapUserMapping: String
+
+    # The username generated by Banner for new accounts (GOBTPAC_EXTERNAL_USER)
+    externalUser: String
+
+    # The Permanent, unique identifier for a person required for IMS data transfers
+    sourcedId: String
+  ): [PersonIdentification]
+
+  # This API returns a person name type data by given ID.
+  personNameType(
+    # The global identifier of a person name type.
+    id: ID
+  ): PersonNameType
+
+  # Provides the list of all names types defined for a person.
+  personNameTypes(
+    # A global identifier of a person name type.
+    id: ID
+    limit: Int
+    offset: Int
+  ): [PersonNameType]
+
+  # Retrieves the list of all the guid of restriction types for a person passed.
+  personRestrictionTypes(
+    # Globally-unique identifier of a person
+    id: ID
+  ): [RestrictionType]
+
+  # Returns the relationship type for a given ID.
+  personalRelationshipType(
+    # The global identifier of a relationship type.
+    id: ID
+  ): PersonalRelationshipType
+
+  # Provide the list of relationship types.
+  personalRelationshipTypes(limit: Int, offset: Int): [PersonalRelationshipType]
+
+  # This API returns a phone type data by given ID.
+  phoneType(
+    # A globally unique identifier of a type of phone.
+    id: String
+  ): PhoneType
+
+  # Provide the list of phone types.
+  phoneTypes(limit: Int, offset: Int): [PhoneType]
+
+  # This API returns race data by given ID
+  race(
+    # The global identifier of a race to be used in all external references to a race.
+    id: String
+  ): RaceType
+
+  # Provides the list of races.
+  races(limit: Int, offset: Int): [RaceType]
+
+  # This API returns the details of a specific religion by the given ID.
+  religion(
+    # The global identifier of the religion.
+    id: String
+  ): Religion
+
+  # Provides the list of all religions.
+  religions(limit: Int, offset: Int): [Religion]
+
+  # Returns the residency type resource for a given ID.
+  residencyType(
+    # A global identifier of a residency(STVRESD_GUID).
+    id: String
+  ): ResidencyType
+
+  # Provide the list of residency types.
+  residencyTypes(limit: Int, offset: Int, sort: SortByCodeOrTitle, order: OrderAscDescArgs): [ResidencyType]
+
+  # This API returns a restriction type data by given ID.
+  restrictionType(
+    # Globally-unique identifier of the restriction type (STVHLDD)
+    id: String
+  ): RestrictionType
+
+  # Provides the list of restriction types.
+  restrictionTypes(limit: Int, offset: Int, sort: RestrictionTypesSort, order: OrderAscDescArgs): [RestrictionType]
+
+  # This API returns a room data by given ID.
+  room(
+    # Globally unique identifier of the room (SLBRDEF)
+    id: String
+  ): Room
+
+  # This API returns list of rooms.
+  rooms(limit: Int, offset: Int, sort: String, order: String, type: String): [Room]
+
+  # This API returns the room characteristics data by given Id.
+  roomCharacteristic(
+    # The global identifier of the Room Characteristic
+    id: String
+  ): RoomCharacteristic
+
+  # Provides the list of all room characteristics.
+  roomCharacteristics(limit: Int, offset: Int): [RoomCharacteristic]
+
+  # This API returns a room type data by given ID
+  roomType(
+    # A globally unique identifier of a room type.
+    id: String
+  ): RoomType
+
+  # Retrieves the list of all sites.
+  roomTypes: [RoomType]
+
+  # This API returns section-grade-types records. The types of section grade type defined are Midterm and Final.
+  sectionGradeType(id: String): SectionGradeType
+
+  # Provide the list of section types.
+  sectionGradeTypes: [SectionGradeType]
+
+  # Returns the section registration status resource for a given ID.
+  sectionRegistrationStatus(id: String): SectionRegistrationStatus
+
+  # Provide the list of section registration statuses.
+  sectionRegistrationStatuses(limit: Int, offset: Int): [SectionRegistrationStatus]
+
+  # This API returns a site data by given ID.
+  site(id: String): Site
+
+  # Retrieves the list of all sites.
+  sites(limit: Int, offset: Int, sort: SortByCodeOrTitle, order: OrderAscDescArgs): [Site]
+
+  # This API returns a student by given id.
+  student(
+    # The global identifier of the student(SGBSTDN_GUID)
+    id: ID
+  ): Student
+
+  # This API provides a list of all students.
+  students(limit: Int, offset: Int, person: ID, residency: ID, type: ID, cohorts: ID): [Student]
+
+  # Returns the student classification resource for a given ID.
+  studentClassification(id: String): StudentClassification
+
+  # Provide the list of student classifications.
+  studentClassifications(limit: Int, offset: Int, sort: SortByCodeOrTitle, order: OrderAscDescArgs): [StudentClassification]
+
+  # Returns the student cohort resource for a given ID.
+  studentCohort(id: String): StudentCohort
+
+  # Provide the list of student cohorts.
+  studentCohorts(limit: Int, offset: Int, sort: SortByCodeOrTitle, order: OrderAscDescArgs): [StudentCohort]
+
+  # Retrieves the list of all the grade information of the student for all the active courses for the term passed.
+  studentGrades(
+    # The identification number used to access a person
+    bannerId: ID
+
+    # Code value to identify the term
+    term: String
+  ): [StudentGrade]
+
+  # Provides the student’s current holds information.
+  studentHolds(
+    # The identification number used to access a person
+    bannerId: String
+  ): [StudentHold]
+
+  # Returns the student status resource for a given ID.
+  studentStatus(id: ID): StudentStatus
+
+  # Provide the list of student statuses.
+  studentStatuses(limit: Int, offset: Int, sort: SortByCodeOrTitle, order: OrderAscDescArgs): [StudentStatus]
+
+  # Returns the student tag resource for a given ID.
+  studentTag(id: String): StudentTag
+
+  # Provide the list of student tags.
+  studentTags(limit: Int, offset: Int, sort: SortByCodeOrTitle, order: OrderAscDescArgs): [StudentTag]
+
+  # Returns the student type resource for a given ID.
+  studentType(id: String): StudentType
+
+  # Provide the list of student types.
+  studentTypes(limit: Int, offset: Int, sort: SortByCodeOrTitle, order: OrderAscDescArgs): [StudentType]
+  subject(
+    # A global identifier of a subject to be used in all external references to the subject(STVSUBJ).
+    id: ID
+  ): Subject
+  subjects(limit: Int, offset: Int, sort: SortByTitleOrAbbreviation, order: OrderAscDescArgs): [Subject]
+  term(
+    # Code value to identify the term
+    termCode: String
+  ): Term
+  terms: [Term]
+  visaType(id: String): VisaType
+  visaTypes(limit: Int, offset: Int, sort: SortByCodeOrTitle, order: OrderAscDescArgs): [VisaType]
+}
+
+# Race
+type RaceType {
+  # The global identifier of a race to be used in all external references to a race.
+  id: ID
+
+  # Human readable code that identifies a racial category (GORRACE_RACE_CDE).
+  code: String
+
+  # The full name of a racial category(GORRACE_DESC).
+  title: String
+
+  # The code of country(USA)
+  countryCode: String
+
+  # A mapping to a standard category for the racial category.
+  racialCategory: String
+}
+
+# Region
+type Region {
+  # The global identifier of the region.
+  id: ID
+
+  # The ISO 3166-2 code of a region within the country
+  code: String
+
+  # The full name of the region
+  title: String
+}
+
+# Registration Status Details
+type RegistrationStatusDetail {
+  # Field that identifies the course registration status associated with the CRN
+  code: String
+
+  # Description of the course registration status code
+  description: String
+}
+
+# Religion
+type Religion {
+  # The global identifier of the religion.
+  id: ID
+
+  # The code assigned to the religion(STVRELG_CODE).
+  code: String
+
+  # The full name of the religion(STVRELG_DESC).
+  title: String
+}
+
+# ReportingDetails
+type ReportingDetails {
+  country: CountryDetails
+}
+
+# Residency Type
+type ResidencyType {
+  # A global identifier of a residency(STVRESD_GUID).
+  id: ID
+
+  # A code that identifies a residency(STVRESD_CODE).
+  code: String
+
+  # The full name of a residency(STVRESD_DESC).
+  title: String
+}
+
+# Restriction Type
+type RestrictionType {
+  # A globally unique identifier (STVHLDD)
+  id: ID
+
+  # A shortened or contracted form of a word or phrase, used to represent the
+  # whole, as Dr. for Doctor. Abbreviations are not assumed to be unique.
+  abbreviation: String
+
+  # The full name of the restriction class.
+  title: String
+}
+
+# Allowed values for sort parameter
+enum RestrictionTypesSort {
+  abbreviation
+  title
+}
+
+# Role Information
+type Role {
+  # The actions and activities assigned to, required of, or expected of a person.
+  # For example, the roles of 'Faculty' or 'Student'.
+  role: String
+
+  # The date when a person starts filling a role.
+  startOn: String
+
+  # The date when a person stops filling a role.
+  endOn: String
+}
+
+# Room
+type Room {
+  # A global identifier of a room to be used in all external references to the room(SLBRDEF).
+  id: ID
+
+  # The full name of a room.
+  title: String
+
+  # A numbering scheme to distinguish different buildings, floors, and rooms
+  # located in the same site. Typically this is a string.
+  number: String
+
+  # List of Room Occupancies
+  occupancies: [RoomOccupancy]
+
+  # List of Room Types
+  roomTypes: [RoomType]
+
+  # The global identifier for Building.
+  buildingId: ID
+
+  # Building
+  building: Building
+
+  # The global identifier of the institution's site.
+  siteId: ID
+
+  # Site
+  site: Site
+}
+
+# Room Characteristic
+type RoomCharacteristic {
+  # The global identifier of the Room Characteristic
+  id: ID
+
+  # The code that identifies the Room Characteristic
+  code: String
+
+  # The full name of the Room Characteristic
+  title: String
+}
+
+# Room Occupancy
+type RoomOccupancy {
+  # The maximum number of persons who may occupy a Room arranged in a given layout
+  maxOccupancy: String
+
+  # For rooms with multiple layout, this can be used. Default value is 'classroom'.
+  type: String
+}
+
+# Room Type
+type RoomType {
+  # A globally unique identifier of a room type.
+  id: ID
+
+  # The full name of a room type.
+  title: String
+
+  # The type or style of a room's layout. Valid value is classroom.
+  type: String
+}
+
+# Section Grade Type
+type SectionGradeType {
+  # Globally-unique identifier of the section grade type
+  id: ID
+
+  # The section grade type defined. The valid values are 'Midterm' and 'Final'.
+  title: String
+}
+
+# Section Registration Status
+type SectionRegistrationStatus {
+  # The global unique identifier of the section registration statuses resource
+  id: ID
+
+  # The code that identifies the section registration status(SYVRSTS_CODE)
+  code: String
+
+  # The full name of the section registration status (SYVRSTS_DESC)
+  title: String
+
+  # If the STVRSTS_INCL_SECT_ENRL field of the registration status being processed
+  # equals [Y], this value will be [include] otherwise [exclude]
+  headcountStatus: String
+
+  # The status of the registration. Enumeration field. One of [registered, notRegistered]
+  registrationStatus: String
+
+  # The reason for the registration status. Enumeration field. One of [pending, dropped, withdrawn, canceled, registered]
+  sectionRegistrationStatusReason: String
+}
+
+# Site
+type Site {
+  # A globally unique identifier(STVCAMP)
+  id: ID
+
+  # The code that identifies the site.
+  code: String
+
+  # The full name of the site.
+  title: String
+}
+
+# Allowed values for sort parameter
+enum SortByCode {
+  code
+}
+
+# Allowed values for sort parameter
+enum SortByCodeOrTitle {
+  code
+  title
+}
+
+# Allowed values for sort parameter
+enum SortByTitleOrAbbreviation {
+  title
+  abbreviation
+}
+
+# Allowed values for sort parameter
+enum SortByTypeOrAbbreviation {
+  type
+  abbreviation
+}
+
+# Student
+type Student {
+  # The global identifier of the student(SGBSTDN_GUID)
+  id: ID
+
+  # A global identifier for person.
+  personId: ID
+
+  # Person Record for Student
+  person: Person
+
+  # List of Student Cohorts
+  cohorts: [StudentCohort]
+
+  # The global identifier of a class code(STVCLAS_GUID)
+  classificationId: ID
+
+  # Student Classification
+  classification: StudentClassification
+
+  # A globally unique identifier of the academic level.
+  levelId: ID
+
+  # Academic Level
+  level: AcademicLevel
+
+  # GPA for the level. Calculated by dividing GPA hours for the level into Quality points for the level
+  performanceMeasure: String
+
+  # The global identifier of a residency(STVRESD_GUID)
+  residencyId: ID
+
+  # Residency Type
+  residency: ResidencyType
+
+  # List of Student Tags
+  tags: [StudentTag]
+
+  # The global identifier of a student type(STVSTYP_GUID)
+  typeId: ID
+
+  # Student Type
+  type: StudentType
+}
+
+# Student Classification
+type StudentClassification {
+  # A global identifier of a class code(STVCLAS_GUID).
+  id: ID
+
+  # A code that identifies a class code(STVCLAS_CODE).
+  code: String
+
+  # The full name of a class code(STVCLAS_DESC).
+  title: String
+}
+
+# Student Cohort
+type StudentCohort {
+  # The global identifier of the student cohort(STVCHRT_GUID)
+  id: ID
+
+  # The code that identifies the student cohort(STVCHRT_CODE).
+  code: String
+
+  # The full name of the student cohort(STVCHRT_DESC).
+  title: String
+
+  # The last date when when students may be assigned to the cohort.
+  endOn: String
+
+  # The first academic period when students may be assigned to the cohort.
+  initialAcademicPeriod: String
+
+  # The first date when when students may be assigned to the cohort.
+  startOn: String
+}
+
+# Student Grade
+type StudentGrade {
+  # Field that identifies the course number associated with the CRN
+  courseNumber: String
+
+  # Course title
+  courseTitle: String
+
+  # Field that identifies the credit hours associated with the CRN
+  creditHour: String
+
+  # Field that identifies the course reference number associated with the class section
+  crn: String
+
+  # Field that identifies the grade code associated with the CRN
+  gradeFinal: String
+
+  # Field that identifies the grade code associated with the CRN in Academic History
+  gradeInAcadHistory: String
+
+  # Field that identifies the mid-term grade code associated with the CRN
+  gradeMidterm: String
+
+  # Field that identifies whether the grade has been rolled to Academic History
+  gradeRolled: String
+
+  # Level Details
+  level: LevelDetail
+
+  # Registration Status Details
+  registrationStatus: RegistrationStatusDetail
+
+  # Class Format Details
+  classFormat: ClassFormatDetail
+
+  # Field that identifies the section number of a course
+  sequenceNumber: String
+
+  # Subject Details
+  subject: SubjectDetail
+
+  # Term Details
+  term: TermDetail
+}
+
+# StudentHold
+type StudentHold {
+  # Field that identifies a dollar amount associated with hold
+  amountOwed: String
+
+  # Field that identifies the effective begin date of hold
+  fromDate: String
+
+  # Field that identifies the type of hold on student record
+  holdTypeCode: String
+
+  # Description of the hold type code
+  holdTypeDescription: String
+
+  # Field that identifies person/office who authorized hold status
+  originatorCode: String
+
+  # Description of the hold originator code
+  originatorDescription: String
+
+  # Field that identifies all the processes affected due to hold
+  processAffectedDescription: [String]
+
+  # Free format field which identifies the reason hold was placed
+  reason: String
+
+  # Field that identifies the end date hold expires
+  toDate: String
+}
+
+# Student Status
+type StudentStatus {
+  # A global identifier of a student status(STVSTST_GUID).
+  id: ID
+
+  # A code that identifies a student status(STVSTST_CODE).
+  code: String
+
+  # The full name of a student status(STVSTST_DESC).
+  title: String
+}
+
+# Student Tag
+type StudentTag {
+  # A global identifier of a student attribute(STVATTS_GUID).
+  id: ID
+
+  # A code that identifies a student attribute(STVATTS_CODE).
+  code: String
+
+  # The full name of a student attribute(STVATTS_DESC).
+  title: String
+}
+
+# Student Type
+type StudentType {
+  # A global identifier of a student type(STVSTYP_GUID).
+  id: ID
+
+  # A code that identifies a student type(STVSTYP_CODE).
+  code: String
+
+  # The full name of a student type(STVSTYP_DESC).
+  title: String
+}
+
+# Subject
+type Subject {
+  # A global identifier of a subject to be used in all external references to the subject(STVSUBJ).
+  id: ID
+
+  # Human readable abbreviated name to a subject.
+  abbreviation: String
+
+  # The full name of a subject.
+  title: String
+}
+
+# Subject Details
+type SubjectDetail {
+  # Field that identifies the subject associated with the CRN
+  code: String
+
+  # Description of the subject code
+  description: String
+}
+
+# Sub-Region
+type SubRegion {
+  # The global identifier of the subregion.
+  id: ID
+
+  # The code of a sub-region. This should be based on ISO 3166-2, if applicable
+  code: String
+
+  # The name of a subregion
+  title: String
+}
+
+# Term
+type Term {
+  # The Surrogate Id of the STVTERM table
+  id: ID
+
+  # Code value to identify the term
+  code: String
+
+  # Description of the term associated with the term code
+  description: String
+
+  # Field that identifies the last date(yyyy-MM-dd) on which classes in this term meet
+  endDate: String
+
+  # Field that indicates that the term is a summer term
+  financeSummerIndicator: String
+
+  # Code of the beginning period for interfacing with a third-party financial aid system, if applicable
+  financialAidPeriod: String
+
+  # Code of the aid year with which this term is associated
+  financialAidProcessingYear: String
+
+  # Code of the term for interfacing with a third-party financial aid system, if applicable
+  financialAidTerm: String
+
+  # Code of the ending period for interfacing with a third-party financial aid system, if applicable
+  financialEndPeriod: String
+
+  # Field that identifies the last date(yyyy-MM-dd) for housing, meal plan, and phone assignments associated with this term.
+  housingEndDate: String
+
+  # Field that identifies the first date(yyyy-MM-dd) for housing, meal plan, and phone assignments associated with this term.
+  housingStartDate: String
+
+  # Field that identifies the first date(yyyy-MM-dd) on which classes in this term meet
+  startDate: String
+
+  # Field that specifies whether this value is required by the system
+  systemReqInd: String
+
+  # Academic Year
+  academicYear: AcademicYear
+
+  # Term Type
+  termType: TermType
+
+  # Optimistic lock token
+  version: String
+}
+
+# Term Details
+type TermDetail {
+  # Code value to identify the term
+  code: String
+
+  # Description of the term associated with the term code
+  description: String
+}
+
+# Term Type
+type TermType {
+  # The Surrogate Id of the STVTRMT table
+  id: ID
+
+  # Code value to identify the type of term
+  code: String
+
+  # Description of the type of term associated with the term type code
+  description: String
+
+  # Optimistic lock token
+  version: String
+}
+
+# Third Party Access
+type ThirdPartyAccess {
+  # The username generated by Banner for new accounts (GOBTPAC_EXTERNAL_USER)
+  externalUser: String
+
+  # The identifier used in GOBTPAC for mapping ldap authentication (GOBTPAC_LDAP_USER)
+  ldapUserMapping: String
+}
+
+# Visa Type
+type VisaType {
+  # The globally unique identifier of a visa type
+  id: ID
+
+  # A global category of visa types (enum values- 'immigrant', 'nonImmigrant')
+  category: String
+
+  # The code that identifies a visa type (e.g. 'H1')
+  code: String
+
+  # The full name of a visa type (e.g. 'Special')
+  title: String
+}

@@ -1,0 +1,8 @@
+.DS_Store
+*.log
+node_modules
+setenv.bat
+public/bundle.js
+public/bundle.js.map
+public/voyager.css
+public/voyager.worker.js

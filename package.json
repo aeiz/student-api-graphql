@@ -1,0 +1,42 @@
+{
+  "name": "student-api-graphql",
+  "version": "1.0.0",
+  "description": "A GraphQL Wrapper for Ellucian's Banner Student REST API",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon ./index.js --exec babel-node",
+    "forever": "forever start server.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --config webpack.production.config.js -p"
+  },
+  "author": "Michael Gillen <Michael.Gillen@colostate.edu>",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-core": "^6.24.1",
+    "babel-eslint": "^7.2.3",
+    "babel-loader": "^7.0.0",
+    "babel-plugin-inline-import": "^2.0.4",
+    "babel-polyfill": "^6.23.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "express": "^4.15.2",
+    "graphql": "^0.9.6",
+    "nodemon": "^1.11.0",
+    "webpack": "^2.6.1"
+  },
+  "dependencies": {
+    "cors": "^2.8.3",
+    "dataloader": "^1.3.0",
+    "debug": "^2.6.8",
+    "express": "^4.15.2",
+    "express-graphql": "^0.6.5",
+    "graphql-voyager": "^1.0.0-rc.3",
+    "isomorphic-fetch": "^2.2.1",
+    "jsonwebtoken": "^7.4.1",
+    "node-fetch": "^1.6.3",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4"
+  }
+}
