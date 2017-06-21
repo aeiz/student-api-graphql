@@ -21,8 +21,8 @@ const GeographicAreaTypesQuery = {
   type: new GraphQLList(GeographicAreaTypeType),
   description: "Provides the list of all geographic area types.",
   args: {
-    limit: { type: GraphQLInt },
-    offset: { type: GraphQLInt }
+    limit: { type: GraphQLInt, defaultValue: 500 },
+    offset: { type: GraphQLInt, defaultValue: 0 }
   },
   resolve: (root, args, context) =>
     new GeographicAreaTypeService(context).list(args)

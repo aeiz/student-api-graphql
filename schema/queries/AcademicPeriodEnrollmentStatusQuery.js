@@ -23,9 +23,8 @@ const AcademicPeriodEnrollmentStatusesQuery = {
   type: new GraphQLList(AcademicPeriodEnrollmentStatusType),
   description: "Provide the list of academic period enrollment statuses.",
   args: {
-    // TODO: Implement filter parameters
-    limit: { type: GraphQLInt },
-    offset: { type: GraphQLInt },
+    limit: { type: GraphQLInt, defaultValue: 500 },
+    offset: { type: GraphQLInt, defaultValue: 0 },
     sort: { type: SortByCodeOrTitle },
     order: { type: OrderAscDescArg }
   },

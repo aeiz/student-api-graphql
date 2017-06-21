@@ -20,18 +20,8 @@ const CreditCategoriesQuery = {
   type: new GraphQLList(CreditCategoryType),
   description: "Provides the list of credit categories.",
   args: {
-    limit: { type: GraphQLInt },
-    offset: { type: GraphQLInt },
-    sort: { // TODO: check if needed
-      type: new GraphQLEnumType({
-        name: "CreditCategoriesSort",
-        description: "Allowed values for sort parameter",
-        values: {
-          title: { value: "title" }
-        }
-      })
-    },
-    order: { type: OrderAscDescArg }
+    limit: { type: GraphQLInt, defaultValue: 500 },
+    offset: { type: GraphQLInt, defaultValue: 0 }
   },
   resolve: (root, args, context) =>
     new CreditCategoryService(context).list(args)

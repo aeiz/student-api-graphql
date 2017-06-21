@@ -1,4 +1,4 @@
-import { GraphQLList, GraphQLID, GraphQLInt, GraphQLString } from "graphql";
+import { GraphQLList, GraphQLID, GraphQLString } from "graphql";
 import { StudentGradeType } from "../types";
 import { StudentGradeService } from "../../services";
 

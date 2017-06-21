@@ -19,18 +19,12 @@ const VisaTypeQuery = {
 const VisaTypesQuery = {
   type: new GraphQLList(VisaTypeType),
   args: {
-    limit: { type: GraphQLInt },
-    offset: { type: GraphQLInt },
+    limit: { type: GraphQLInt, defaultValue: 500 },
+    offset: { type: GraphQLInt, defaultValue: 0 },
     sort: { type: SortByCodeOrTitle },
     order: { type: OrderAscDescArg }
   },
-  resolve: (root, args, context) =>
-    new VisaTypeService(context).list({
-      limit: args.limit,
-      offset: args.offset,
-      sort: args.sort,
-      order: args.order
-    })
+  resolve: (root, args, context) => new VisaTypeService(context).list(args)
 };
 
 export { VisaTypeQuery, VisaTypesQuery };

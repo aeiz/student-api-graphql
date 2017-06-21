@@ -18,9 +18,9 @@ const RoomsQuery = {
   type: new GraphQLList(RoomType),
   description: "This API returns list of rooms.",
   args: {
-    limit: { type: GraphQLInt },
-    offset: { type: GraphQLInt },
-    // Add enum type for sort and order options
+    limit: { type: GraphQLInt, defaultValue: 500 },
+    offset: { type: GraphQLInt, defaultValue: 0 },
+    // TODO: Add enum type for sort and order options
     sort: { type: GraphQLString },
     order: { type: GraphQLString },
     type: { type: GraphQLString }

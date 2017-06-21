@@ -25,8 +25,8 @@ const RestrictionTypesQuery = {
   type: new GraphQLList(RestrictionTypeType),
   description: "Provides the list of restriction types.",
   args: {
-    limit: { type: GraphQLInt },
-    offset: { type: GraphQLInt },
+    limit: { type: GraphQLInt, defaultValue: 500 },
+    offset: { type: GraphQLInt, defaultValue: 0 },
     sort: {
       type: new GraphQLEnumType({
         name: "RestrictionTypesSort",

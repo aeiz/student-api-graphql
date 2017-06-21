@@ -23,8 +23,8 @@ const PersonNameTypesQuery = {
       type: GraphQLID,
       description: "A global identifier of a person name type."
     },
-    limit: { type: GraphQLInt },
-    offset: { type: GraphQLInt }
+    limit: { type: GraphQLInt, defaultValue: 500 },
+    offset: { type: GraphQLInt, defaultValue: 0 }
   },
   resolve: (root, args, context) =>
     new PersonNameTypeService(context).list(args)

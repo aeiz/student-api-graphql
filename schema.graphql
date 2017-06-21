@@ -532,11 +532,6 @@ type Credential {
   endOn: String
 }
 
-# Allowed values for sort parameter
-enum CreditCategoriesSort {
-  title
-}
-
 # Credit Category
 type CreditCategory {
   # A global identifier of a credit category.
@@ -1299,11 +1294,6 @@ type PersonFilter {
   title: String
 }
 
-# Allowed values for sort parameter
-enum PersonFiltersSort {
-  code
-}
-
 # Person Hold
 type PersonHold {
   # A global identifier for person hold.
@@ -1503,7 +1493,7 @@ type Query {
   ): AcademicCredential
 
   # Provides the list of all credentials.
-  academicCredentials(limit: Int, offset: Int, sort: SortByTypeOrAbbreviation, order: OrderAscDescArgs, type: String): [AcademicCredential]
+  academicCredentials(limit: Int = 500, offset: Int = 0, sort: SortByTypeOrAbbreviation, order: OrderAscDescArgs, type: String): [AcademicCredential]
 
   # This API returns the details of a specific academic discipline by the given ID.
   academicDiscipline(
@@ -1512,7 +1502,7 @@ type Query {
   ): AcademicDiscipline
 
   # Provides the list of all disciplines.
-  academicDisciplines(limit: Int, offset: Int, sort: SortByTypeOrAbbreviation, order: OrderAscDescArgs, type: String): [AcademicDiscipline]
+  academicDisciplines(limit: Int = 500, offset: Int = 0, sort: SortByTypeOrAbbreviation, order: OrderAscDescArgs, type: String): [AcademicDiscipline]
 
   # This API returns the details of a specific academic-honors by the given ID.
   academicHonor(
@@ -1521,7 +1511,7 @@ type Query {
   ): AcademicHonor
 
   # Provides the list of all honors.
-  academicHonors(limit: Int, offset: Int, sort: String, order: OrderAscDescArgs, type: String): [AcademicHonor]
+  academicHonors(limit: Int = 500, offset: Int = 0, sort: String, order: OrderAscDescArgs, type: String): [AcademicHonor]
 
   # This API returns a academic level data by given ID.
   academicLevel(
@@ -1530,7 +1520,7 @@ type Query {
   ): AcademicLevel
 
   # Provides the list of academic levels.
-  academicLevels(limit: Int, offset: Int, sort: SortByCodeOrTitle, order: OrderAscDescArgs): [AcademicLevel]
+  academicLevels(limit: Int = 500, offset: Int = 0, sort: SortByCodeOrTitle, order: OrderAscDescArgs): [AcademicLevel]
 
   # This API returns an Academic Period data by the given ID.
   academicPeriod(
@@ -1539,7 +1529,7 @@ type Query {
   ): AcademicPeriod
 
   # Retrieves the list of all Academic Periods.
-  academicPeriods(limit: Int, offset: Int, sort: SortByCodeOrTitle, order: OrderAscDescArgs): [AcademicPeriod]
+  academicPeriods(limit: Int = 500, offset: Int = 0, sort: SortByCodeOrTitle, order: OrderAscDescArgs): [AcademicPeriod]
 
   # Returns the academic period enrollment status resource for a given ID.
   academicPeriodEnrollmentStatus(
@@ -1548,7 +1538,7 @@ type Query {
   ): AcademicPeriodEnrollmentStatus
 
   # Provide the list of academic period enrollment statuses.
-  academicPeriodEnrollmentStatuses(limit: Int, offset: Int, sort: SortByCodeOrTitle, order: OrderAscDescArgs): [AcademicPeriodEnrollmentStatus]
+  academicPeriodEnrollmentStatuses(limit: Int = 500, offset: Int = 0, sort: SortByCodeOrTitle, order: OrderAscDescArgs): [AcademicPeriodEnrollmentStatus]
 
   # The API retrieves academic program record for a given id.
   academicProgram(
@@ -1557,7 +1547,7 @@ type Query {
   ): AcademicProgram
 
   # Provides the list of academic programs.
-  academicPrograms(limit: Int, offset: Int): [AcademicProgram]
+  academicPrograms(limit: Int = 500, offset: Int = 0): [AcademicProgram]
 
   # Returns the academic standing resource for a given ID.
   academicStanding(
@@ -1566,7 +1556,7 @@ type Query {
   ): AcademicStandingType
 
   # Retrieves the list of all academic standings.
-  academicStandings(limit: Int, offset: Int, sort: SortByCodeOrTitle, order: OrderAscDescArgs): [AcademicStandingType]
+  academicStandings(limit: Int = 500, offset: Int = 0, sort: SortByCodeOrTitle = code, order: OrderAscDescArgs = asc): [AcademicStandingType]
 
   # This API returns an address record by given id.
   address(
@@ -1575,7 +1565,7 @@ type Query {
   ): Address
 
   # This API returns a list of Addresses information.
-  addresses(limit: Int, offset: Int): [Address]
+  addresses(limit: Int = 500, offset: Int): [Address]
 
   # This API returns a address type data for a given ID.
   addressType(
@@ -1584,7 +1574,7 @@ type Query {
   ): AddressType
 
   # Provides the list of address types.
-  addressTypes(limit: Int, offset: Int): [AddressType]
+  addressTypes(limit: Int = 500, offset: Int = 0): [AddressType]
 
   # This API returns a building data by given ID.
   building(
@@ -1596,8 +1586,8 @@ type Query {
   buildings(
     # A globally unique identifier(STVCAMP)
     siteId: String
-    limit: Int
-    offset: Int
+    limit: Int = 500
+    offset: Int = 0
     sort: SortByCodeOrTitle
     order: OrderAscDescArgs
   ): [Building]
@@ -1609,7 +1599,7 @@ type Query {
   ): CampusInvolvement
 
   # Provide the list of student and their activities, sports and committees in Banner.
-  campusInvolvements(limit: Int, offset: Int): [CampusInvolvement]
+  campusInvolvements(limit: Int = 500, offset: Int = 0): [CampusInvolvement]
 
   # Returns the committee function for a given ID.
   campusInvolvementRole(
@@ -1618,12 +1608,12 @@ type Query {
   ): CampusInvolvementRole
 
   # Provide the list of committee functions in Banner.
-  campusInvolvementRoles(limit: Int, offset: Int): [CampusInvolvementRole]
+  campusInvolvementRoles(limit: Int = 500, offset: Int = 0): [CampusInvolvementRole]
   campusOrganization(
     # The global identifier of the campus organizations resource (STVACTC and STVCOMT)
     id: ID
   ): CampusOrganization
-  campusOrganizations(limit: Int, offset: Int): [CampusOrganization]
+  campusOrganizations(limit: Int = 500, offset: Int = 0): [CampusOrganization]
 
   # Returns the student activity type for a given ID.
   campusOrganizationType(
@@ -1632,7 +1622,7 @@ type Query {
   ): CampusOrganizationType
 
   # Provide the list of student activity types in Banner.
-  campusOrganizationTypes(limit: Int, offset: Int): [CampusOrganizationType]
+  campusOrganizationTypes(limit: Int = 500, offset: Int = 0): [CampusOrganizationType]
 
   # This API returns a citizenship status data by given ID.
   citizenshipStatus(
@@ -1641,7 +1631,7 @@ type Query {
   ): CitizenshipStatus
 
   # Provides the list of Citizenship Statuses.
-  citizenshipStatuses(limit: Int, offset: Int, sort: SortByCodeOrTitle, order: OrderAscDescArgs, type: String): [CitizenshipStatus]
+  citizenshipStatuses(limit: Int = 500, offset: Int = 0, sort: SortByCodeOrTitle, order: OrderAscDescArgs): [CitizenshipStatus]
   classSchedules(bannerId: ID, termCode: String): ClassSchedules
 
   # This API returns a course data by given id.
@@ -1652,8 +1642,8 @@ type Query {
 
   # This API returns a list of courses.
   courses(
-    limit: Int
-    offset: Int
+    limit: Int = 10
+    offset: Int = 0
     sort: CoursesSort
     order: OrderAscDescArgs
     subject: ID
@@ -1677,7 +1667,7 @@ type Query {
   ): CreditCategory
 
   # Provides the list of credit categories.
-  creditCategories(limit: Int, offset: Int, sort: CreditCategoriesSort, order: OrderAscDescArgs): [CreditCategory]
+  creditCategories(limit: Int = 500, offset: Int = 0): [CreditCategory]
 
   # This API returns an educational institution record for the given id.
   educationalInstitution(
@@ -1686,7 +1676,7 @@ type Query {
   ): EducationalInstitution
 
   # This API returns list of educational institution records.
-  educationalInstitutions(limit: Int, offset: Int, sort: String, order: OrderAscDescArgs, type: String): [EducationalInstitution]
+  educationalInstitutions(limit: Int = 500, offset: Int = 0, sort: SortByType, order: OrderAscDescArgs = asc, type: String): [EducationalInstitution]
 
   # This API returns an educational institution unit record for the given id.
   educationalInstitutionUnit(
@@ -1695,7 +1685,7 @@ type Query {
   ): EducationalInstitutionUnit
 
   # This API returns list of educational institution unit records.
-  educationalInstitutionUnits(limit: Int, offset: Int, sort: String, order: OrderAscDescArgs, type: String): [EducationalInstitutionUnit]
+  educationalInstitutionUnits(limit: Int = 500, offset: Int = 0, sort: SortByType, order: OrderAscDescArgs, type: String): [EducationalInstitutionUnit]
 
   # This API returns a email type data by given ID.
   emailType(
@@ -1704,7 +1694,7 @@ type Query {
   ): EmailType
 
   # Provides the list of email types.
-  emailTypes(limit: Int, offset: Int): [EmailType]
+  emailTypes(limit: Int = 500, offset: Int = 0): [EmailType]
 
   # This API returns the details of a specific enrollment status by the given ID.
   enrollmentStatus(
@@ -1713,7 +1703,7 @@ type Query {
   ): EnrollmentStatus
 
   # This API returns the list of active enrollment statuses.
-  enrollmentStatuses(limit: Int, offset: Int): [EnrollmentStatus]
+  enrollmentStatuses(limit: Int = 500, offset: Int = 0): [EnrollmentStatus]
   ethnicity(
     # Globally-unique identifier of the new ethnicity defined by U.S government.
     # The valid values are Not Hispanic and Hispanic (GORGUID_GUID)
@@ -1728,7 +1718,7 @@ type Query {
   ): ExternalEducation
 
   # This API returns a list of external education records for all students.
-  externalEducations(limit: Int, offset: Int): [ExternalEducation]
+  externalEducations(limit: Int = 500, offset: Int = 0): [ExternalEducation]
   facultyAdvisor(
     # The identification number used to access a person
     bannerId: ID
@@ -1744,7 +1734,7 @@ type Query {
   ): GeographicArea
 
   # Provides the list of all geographic areas.
-  geographicAreas(limit: Int, offset: Int): [GeographicArea]
+  geographicAreas(limit: Int = 500, offset: Int = 0): [GeographicArea]
 
   # This API returns the details of a specific geographic area type by the given ID.
   geographicAreaType(
@@ -1753,7 +1743,7 @@ type Query {
   ): GeographicAreaType
 
   # Provides the list of all geographic area types.
-  geographicAreaTypes(limit: Int, offset: Int): [GeographicAreaType]
+  geographicAreaTypes(limit: Int = 500, offset: Int = 0): [GeographicAreaType]
 
   # This API returns a grade change reason data by given ID. by the given ID.
   gradeChangeReason(
@@ -1762,7 +1752,7 @@ type Query {
   ): GradeChangeReason
 
   # Provides the list of grade-change-reasons.
-  gradeChangeReasons(limit: Int, offset: Int, sort: SortByCodeOrTitle, order: OrderAscDescArgs): [GradeChangeReason]
+  gradeChangeReasons(limit: Int = 500, offset: Int = 0, sort: SortByCodeOrTitle, order: OrderAscDescArgs): [GradeChangeReason]
 
   # This API returns a valid grade by given ID.
   gradeDefinition(
@@ -1771,7 +1761,7 @@ type Query {
   ): GradeDefinition
 
   # Provides the list of valid grades.
-  gradeDefinitions(limit: Int, offset: Int): [GradeDefinition]
+  gradeDefinitions(limit: Int = 500, offset: Int = 0): [GradeDefinition]
 
   # This API returns a grade mode data by given ID.
   gradeMode(
@@ -1780,7 +1770,7 @@ type Query {
   ): GradeMode
 
   # Provides the list of grade modes.
-  gradeModes(limit: Int, offset: Int, sort: SortByCodeOrTitle, order: OrderAscDescArgs): [GradeMode]
+  gradeModes(limit: Int = 500, offset: Int = 0, sort: SortByCodeOrTitle, order: OrderAscDescArgs): [GradeMode]
 
   # This API returns a grade scheme data by given ID.
   gradeScheme(
@@ -1789,7 +1779,7 @@ type Query {
   ): GradeScheme
 
   # Provides the list of grade schemes.
-  gradeSchemes(limit: Int, offset: Int, sort: SortByCode, order: OrderAscDescArgs): [GradeScheme]
+  gradeSchemes(limit: Int = 500, offset: Int = 0, sort: SortByCode, order: OrderAscDescArgs): [GradeScheme]
 
   # This API retrieves meeting records (SSRMEET), room and faculty assignments (SIRASGN) based on given ID.
   instructionalEvent(
@@ -1799,8 +1789,8 @@ type Query {
 
   # This API retrieves meeting records (SSRMEET), room and faculty assignments (SIRASGN)
   instructionalEvents(
-    limit: Int
-    offset: Int
+    limit: Int = 20
+    offset: Int = 0
 
     # Globally-unique identifier of a person
     instructor: ID
@@ -1813,7 +1803,7 @@ type Query {
   ): InstructionalMethod
 
   # Provides the list of instructional methods.
-  instructionalMethods(limit: Int, offset: Int, sort: SortByTitleOrAbbreviation, order: OrderAscDescArgs): [InstructionalMethod]
+  instructionalMethods(limit: Int = 500, offset: Int = 0, sort: SortByTitleOrAbbreviation, order: OrderAscDescArgs): [InstructionalMethod]
 
   # This API returns an instructional platform data by given ID.
   instructionalPlatform(
@@ -1826,7 +1816,7 @@ type Query {
   # from integration partner code table. The instructional platform retrieves the
   # title, abbreviation and description details. The retrieved details are
   # incorporated in the section API in which GUID, title, and abbreviation are seen.
-  instructionalPlatforms(limit: Int, offset: Int, sort: SortByCodeOrTitle, order: OrderAscDescArgs): [InstructionalPlatform]
+  instructionalPlatforms(limit: Int = 500, offset: Int = 0, sort: SortByCodeOrTitle, order: OrderAscDescArgs): [InstructionalPlatform]
 
   # Provide a instructor record for the given id.
   instructor(
@@ -1835,7 +1825,7 @@ type Query {
   ): Instructor
 
   # Provide the list of instructors.
-  instructors(limit: Int, offset: Int, instructor: ID): [Instructor]
+  instructors(limit: Int = 500, offset: Int = 0, instructor: ID): [Instructor]
 
   # Provide an instructor category record for the given id.
   instructorCategory(
@@ -1844,7 +1834,7 @@ type Query {
   ): InstructorCategory
 
   # Provide the list of instructor categories.
-  instructorCategories(limit: Int, offset: Int): [InstructorCategory]
+  instructorCategories(limit: Int = 0, offset: Int = 0): [InstructorCategory]
 
   # Provide an instructor staff type record for the given id.
   instructorStaffType(
@@ -1853,7 +1843,7 @@ type Query {
   ): InstructorStaffType
 
   # Provide the list of instructor staff types.
-  instructorStaffTypes(limit: Int, offset: Int): [InstructorStaffType]
+  instructorStaffTypes(limit: Int = 500, offset: Int = 0): [InstructorStaffType]
 
   # Provide an instructor tenure type record for the given id.
   instructorTenureType(
@@ -1862,7 +1852,7 @@ type Query {
   ): InstructorTenureType
 
   # Provide the list of instructor tenure types.
-  instructorTenureTypes(limit: Int, offset: Int): [InstructorTenureType]
+  instructorTenureTypes(limit: Int = 500, offset: Int = 0): [InstructorTenureType]
 
   # The API retrieves interest record for a given ID.
   interest(
@@ -1871,7 +1861,7 @@ type Query {
   ): InterestType
 
   # Provides the list of interests that can be recorded on a person or organization profile.
-  interests(limit: Int, offset: Int): [InterestType]
+  interests(limit: Int = 500, offset: Int = 0): [InterestType]
 
   # This API returns a marital status data by given id.
   maritalStatus(
@@ -1880,7 +1870,7 @@ type Query {
   ): MaritalStatus
 
   # Provides the list of marital statuses.
-  maritalStatuses(limit: Int, offset: Int, sort: SortByCodeOrTitle, order: OrderAscDescArgs): [MaritalStatus]
+  maritalStatuses(limit: Int = 500, offset: Int = 0, sort: SortByCodeOrTitle, order: OrderAscDescArgs): [MaritalStatus]
 
   # This API returns an organization data by given ID from SPRIDEN.
   organization(
@@ -1889,7 +1879,7 @@ type Query {
   ): Organization
 
   # Retrieves the list of all non-person records from SPRIDEN.
-  organizations(limit: Int, offset: Int, role: OrganizationsRoleArgEnumVendor): [Organization]
+  organizations(limit: Int = 500, offset: Int = 0, role: OrganizationsRoleArgEnumVendor): [Organization]
 
   # This API returns a person data by given ID.
   person(
@@ -1898,7 +1888,7 @@ type Query {
   ): Person
 
   # Retrieves the list of all persons.
-  persons(limit: Int, offset: Int, sort: String, order: String, role: String, personFilter: String, credentialType: String, credentialValue: String): [Person]
+  persons(limit: Int = 500, offset: Int = 0, sort: String = "lastName", order: OrderAscDescArgs = asc, role: String, personFilter: ID, credentialType: String, credentialValue: String): [Person]
 
   # This API returns a person credentials by given id.
   personCredentials(
@@ -1907,7 +1897,7 @@ type Query {
   ): PersonCredentials
 
   # This API provides a list of all persons credentials.
-  personsCredentials(limit: Int, offset: Int): [PersonCredentials]
+  personsCredentials(limit: Int = 500, offset: Int = 0): [PersonCredentials]
 
   # This API returns the details of a specific person hold for a given ID.
   personFilter(
@@ -1916,7 +1906,7 @@ type Query {
   ): PersonFilter
 
   # This API returns the list of population selections.
-  personFilters(limit: Int, offset: Int, sort: PersonFiltersSort, order: OrderAscDescArgs, code: String): [PersonFilter]
+  personFilters(limit: Int = 500, offset: Int = 0, sort: SortByCode, order: OrderAscDescArgs, code: String): [PersonFilter]
 
   # This API returns the details of a specific person hold for a given ID.
   personHold(
@@ -1926,8 +1916,8 @@ type Query {
 
   # Provides the list of all persons holds.
   personHolds(
-    limit: Int
-    offset: Int
+    limit: Int = 500
+    offset: Int = 0
 
     # A global identifier for a person.
     person: ID
@@ -1941,10 +1931,11 @@ type Query {
 
   # Provides the list of person visas.
   personVisas(
+    limit: Int = 500
+    offset: Int = 0
+
     # A global identifier of a person.
     person: ID
-    limit: Int
-    offset: Int
   ): [PersonVisa]
 
   # This API returns the details of a specific hold type for a given ID.
@@ -1954,7 +1945,7 @@ type Query {
   ): PersonHoldType
 
   # Provides the list of all hold types defined for a person.
-  personHoldTypes(limit: Int, offset: Int): [PersonHoldType]
+  personHoldTypes(limit: Int = 500, offset: Int = 0): [PersonHoldType]
 
   # Retrieves identification information for person matching the bannerId provided.
   personIdentification(
@@ -1990,8 +1981,8 @@ type Query {
   personNameTypes(
     # A global identifier of a person name type.
     id: ID
-    limit: Int
-    offset: Int
+    limit: Int = 500
+    offset: Int = 0
   ): [PersonNameType]
 
   # Retrieves the list of all the guid of restriction types for a person passed.
@@ -2007,7 +1998,7 @@ type Query {
   ): PersonalRelationshipType
 
   # Provide the list of relationship types.
-  personalRelationshipTypes(limit: Int, offset: Int): [PersonalRelationshipType]
+  personalRelationshipTypes(limit: Int = 500, offset: Int = 0): [PersonalRelationshipType]
 
   # This API returns a phone type data by given ID.
   phoneType(
@@ -2016,7 +2007,7 @@ type Query {
   ): PhoneType
 
   # Provide the list of phone types.
-  phoneTypes(limit: Int, offset: Int): [PhoneType]
+  phoneTypes(limit: Int = 500, offset: Int = 0): [PhoneType]
 
   # This API returns race data by given ID
   race(
@@ -2025,7 +2016,7 @@ type Query {
   ): RaceType
 
   # Provides the list of races.
-  races(limit: Int, offset: Int): [RaceType]
+  races(limit: Int = 500, offset: Int = 0): [RaceType]
 
   # This API returns the details of a specific religion by the given ID.
   religion(
@@ -2034,7 +2025,7 @@ type Query {
   ): Religion
 
   # Provides the list of all religions.
-  religions(limit: Int, offset: Int): [Religion]
+  religions(limit: Int = 500, offset: Int = 0): [Religion]
 
   # Returns the residency type resource for a given ID.
   residencyType(
@@ -2043,7 +2034,7 @@ type Query {
   ): ResidencyType
 
   # Provide the list of residency types.
-  residencyTypes(limit: Int, offset: Int, sort: SortByCodeOrTitle, order: OrderAscDescArgs): [ResidencyType]
+  residencyTypes(limit: Int = 500, offset: Int = 0, sort: SortByCodeOrTitle = code, order: OrderAscDescArgs = asc): [ResidencyType]
 
   # This API returns a restriction type data by given ID.
   restrictionType(
@@ -2052,7 +2043,7 @@ type Query {
   ): RestrictionType
 
   # Provides the list of restriction types.
-  restrictionTypes(limit: Int, offset: Int, sort: RestrictionTypesSort, order: OrderAscDescArgs): [RestrictionType]
+  restrictionTypes(limit: Int = 500, offset: Int = 0, sort: RestrictionTypesSort, order: OrderAscDescArgs): [RestrictionType]
 
   # This API returns a room data by given ID.
   room(
@@ -2061,7 +2052,7 @@ type Query {
   ): Room
 
   # This API returns list of rooms.
-  rooms(limit: Int, offset: Int, sort: String, order: String, type: String): [Room]
+  rooms(limit: Int = 500, offset: Int = 0, sort: String, order: String, type: String): [Room]
 
   # This API returns the room characteristics data by given Id.
   roomCharacteristic(
@@ -2070,7 +2061,7 @@ type Query {
   ): RoomCharacteristic
 
   # Provides the list of all room characteristics.
-  roomCharacteristics(limit: Int, offset: Int): [RoomCharacteristic]
+  roomCharacteristics(limit: Int = 500, offset: Int = 0): [RoomCharacteristic]
 
   # This API returns a room type data by given ID
   roomType(
@@ -2100,13 +2091,13 @@ type Query {
   sectionRegistrationStatus(id: String): SectionRegistrationStatus
 
   # Provide the list of section registration statuses.
-  sectionRegistrationStatuses(limit: Int, offset: Int): [SectionRegistrationStatus]
+  sectionRegistrationStatuses(limit: Int = 500, offset: Int = 0): [SectionRegistrationStatus]
 
   # This API returns a site data by given ID.
   site(id: String): Site
 
   # Retrieves the list of all sites.
-  sites(limit: Int, offset: Int, sort: SortByCodeOrTitle, order: OrderAscDescArgs): [Site]
+  sites(limit: Int = 500, offset: Int = 0, sort: SortByCodeOrTitle, order: OrderAscDescArgs): [Site]
 
   # This API returns a student by given id.
   student(
@@ -2115,7 +2106,7 @@ type Query {
   ): Student
 
   # This API provides a list of all students.
-  students(limit: Int, offset: Int, person: ID, residency: ID, type: ID, cohorts: ID): [Student]
+  students(limit: Int = 500, offset: Int = 0, person: ID, residency: ID, type: ID, cohorts: ID): [Student]
 
   # This API returns a Term Enrollment information by given id.
   studentAcademicPeriodProfile(
@@ -2124,7 +2115,7 @@ type Query {
   ): StudentAcademicPeriodProfile
 
   # This API returns a list of Term Enrollment information.
-  studentAcademicPeriodProfiles(limit: Int, offset: Int, person: ID, academicPeriod: ID): [StudentAcademicPeriodProfile]
+  studentAcademicPeriodProfiles(limit: Int = 500, offset: Int = 0, person: ID, academicPeriod: ID): [StudentAcademicPeriodProfile]
 
   # Provide a student academic standing record for the given id.
   studentAcademicStanding(
@@ -2133,7 +2124,7 @@ type Query {
   ): StudentAcademicStanding
 
   # Provide the list of student academic standings.
-  studentAcademicStandings(limit: Int, offset: Int): [StudentAcademicStanding]
+  studentAcademicStandings(limit: Int = 500, offset: Int = 0): [StudentAcademicStanding]
 
   # Determines if the given student is eligibile to register in the given term at this point in time.
   studentRegistrationEligibility(
@@ -2148,13 +2139,13 @@ type Query {
   studentClassification(id: String): StudentClassification
 
   # Provide the list of student classifications.
-  studentClassifications(limit: Int, offset: Int, sort: SortByCodeOrTitle, order: OrderAscDescArgs): [StudentClassification]
+  studentClassifications(limit: Int = 500, offset: Int = 0, sort: SortByCodeOrTitle = code, order: OrderAscDescArgs = asc): [StudentClassification]
 
   # Returns the student cohort resource for a given ID.
   studentCohort(id: String): StudentCohort
 
   # Provide the list of student cohorts.
-  studentCohorts(limit: Int, offset: Int, sort: SortByCodeOrTitle, order: OrderAscDescArgs): [StudentCohort]
+  studentCohorts(limit: Int = 500, offset: Int = 0, sort: SortByCodeOrTitle = code, order: OrderAscDescArgs = asc): [StudentCohort]
 
   # Retrieves the list of all the grade information of the student for all the active courses for the term passed.
   studentGrades(
@@ -2168,38 +2159,38 @@ type Query {
   # Provides the student’s current holds information.
   studentHolds(
     # The identification number used to access a person
-    bannerId: String
+    bannerId: ID
   ): [StudentHold]
 
   # Returns the student status resource for a given ID.
   studentStatus(id: ID): StudentStatus
 
   # Provide the list of student statuses.
-  studentStatuses(limit: Int, offset: Int, sort: SortByCodeOrTitle, order: OrderAscDescArgs): [StudentStatus]
+  studentStatuses(limit: Int = 500, offset: Int = 0, sort: SortByCodeOrTitle = code, order: OrderAscDescArgs = asc): [StudentStatus]
 
   # Returns the student tag resource for a given ID.
   studentTag(id: String): StudentTag
 
   # Provide the list of student tags.
-  studentTags(limit: Int, offset: Int, sort: SortByCodeOrTitle, order: OrderAscDescArgs): [StudentTag]
+  studentTags(limit: Int = 500, offset: Int = 0, sort: SortByCodeOrTitle = code, order: OrderAscDescArgs = asc): [StudentTag]
 
   # Returns the student type resource for a given ID.
   studentType(id: String): StudentType
 
   # Provide the list of student types.
-  studentTypes(limit: Int, offset: Int, sort: SortByCodeOrTitle, order: OrderAscDescArgs): [StudentType]
+  studentTypes(limit: Int = 500, offset: Int = 0, sort: SortByCodeOrTitle = code, order: OrderAscDescArgs = asc): [StudentType]
   subject(
     # A global identifier of a subject to be used in all external references to the subject(STVSUBJ).
     id: ID
   ): Subject
-  subjects(limit: Int, offset: Int, sort: SortByTitleOrAbbreviation, order: OrderAscDescArgs): [Subject]
+  subjects(limit: Int = 500, offset: Int = 0, sort: SortByTitleOrAbbreviation, order: OrderAscDescArgs): [Subject]
   term(
     # Code value to identify the term
     termCode: String
   ): Term
   terms: [Term]
   visaType(id: String): VisaType
-  visaTypes(limit: Int, offset: Int, sort: SortByCodeOrTitle, order: OrderAscDescArgs): [VisaType]
+  visaTypes(limit: Int = 500, offset: Int = 0, sort: SortByCodeOrTitle, order: OrderAscDescArgs): [VisaType]
 }
 
 # Race
@@ -2444,6 +2435,11 @@ enum SortByCodeOrTitle {
 enum SortByTitleOrAbbreviation {
   title
   abbreviation
+}
+
+# Allowed values for sort parameter
+enum SortByType {
+  type
 }
 
 # Allowed values for sort parameter

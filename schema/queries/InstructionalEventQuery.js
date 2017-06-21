@@ -21,8 +21,8 @@ const InstructionalEventsQuery = {
   description: "This API retrieves meeting records (SSRMEET), room and" +
     " faculty assignments (SIRASGN)",
   args: {
-    limit: { type: GraphQLInt },
-    offset: { type: GraphQLInt },
+    limit: { type: GraphQLInt, defaultValue: 20 },
+    offset: { type: GraphQLInt, defaultValue: 0 },
     instructor: {
       type: GraphQLID,
       description: "Globally-unique identifier of a person"

@@ -1,5 +1,5 @@
 import { GraphQLID, GraphQLList, GraphQLInt, GraphQLString } from "graphql";
-import { OrderAscDescArg } from "../types/args";
+import { OrderAscDescArg, SortByType } from "../types/args";
 import { EducationalInstitutionType } from "../types";
 import { EducationalInstitutionService } from "../../services";
 
@@ -22,11 +22,10 @@ const EducationalInstitutionsQuery = {
   type: new GraphQLList(EducationalInstitutionType),
   description: "This API returns list of educational institution records.",
   args: {
-    limit: { type: GraphQLInt },
-    offset: { type: GraphQLInt },
-    // Add enum type for sort and order options
-    sort: { type: GraphQLString }, // type
-    order: { type: OrderAscDescArg },
+    limit: { type: GraphQLInt, defaultValue: 500 },
+    offset: { type: GraphQLInt, defaultValue: 0 },
+    sort: { type: SortByType },
+    order: { type: OrderAscDescArg, defaultValue: "asc" },
     type: { type: GraphQLString }
   },
   resolve: (root, args, context) =>

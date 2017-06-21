@@ -19,8 +19,8 @@ const AddressTypesQuery = {
   type: new GraphQLList(AddressTypeType),
   description: "Provides the list of address types.",
   args: {
-    limit: { type: GraphQLInt },
-    offset: { type: GraphQLInt }
+    limit: { type: GraphQLInt, defaultValue: 500 },
+    offset: { type: GraphQLInt, defaultValue: 0 }
   },
   resolve: (root, args, context) => new AddressTypeService(context).list(args)
 };

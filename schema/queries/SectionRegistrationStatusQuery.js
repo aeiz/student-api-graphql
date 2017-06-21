@@ -17,8 +17,8 @@ const SectionRegistrationStatusesQuery = {
   type: new GraphQLList(SectionRegistrationStatusType),
   description: "Provide the list of section registration statuses.",
   args: {
-    limit: { type: GraphQLInt },
-    offset: { type: GraphQLInt }
+    limit: { type: GraphQLInt, defaultValue: 500 },
+    offset: { type: GraphQLInt, defaultValue: 0 }
   },
   resolve: (root, args, context) =>
     new SectionRegistrationStatusService(context).list(args)

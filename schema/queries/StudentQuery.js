@@ -1,9 +1,4 @@
-import {
-  GraphQLID,
-  GraphQLString,
-  GraphQLList,
-  GraphQLInt
-} from "graphql";
+import { GraphQLID, GraphQLList, GraphQLInt } from "graphql";
 import { StudentType } from "../types";
 import { StudentService } from "../../services";
 
@@ -23,8 +18,8 @@ const StudentsQuery = {
   type: new GraphQLList(StudentType),
   description: "This API provides a list of all students.",
   args: {
-    limit: { type: GraphQLInt },
-    offset: { type: GraphQLInt },
+    limit: { type: GraphQLInt, defaultValue: 500 },
+    offset: { type: GraphQLInt, defaultValue: 0 },
     person: { type: GraphQLID },
     residency: { type: GraphQLID },
     type: { type: GraphQLID },

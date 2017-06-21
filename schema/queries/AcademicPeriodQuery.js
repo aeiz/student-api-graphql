@@ -20,11 +20,11 @@ const AcademicPeriodsQuery = {
   type: new GraphQLList(AcademicPeriodType),
   description: "Retrieves the list of all Academic Periods.",
   args: {
-    limit: { type: GraphQLInt },
-    offset: { type: GraphQLInt },
+    limit: { type: GraphQLInt, defaultValue: 500 },
+    offset: { type: GraphQLInt, defaultValue: 0 },
     sort: { type: SortByCodeOrTitle },
     order: { type: OrderAscDescArg }
-    // TODO: Implement filter parameters
+    // TODO: Implement filter parameters (code and category)
   },
   resolve: (root, args, context) =>
     new AcademicPeriodService(context).list(args)

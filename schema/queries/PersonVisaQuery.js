@@ -24,12 +24,12 @@ const PersonVisasQuery = {
   type: new GraphQLList(PersonVisaType),
   description: "Provides the list of person visas.",
   args: {
+    limit: { type: GraphQLInt, defaultValue: 500 },
+    offset: { type: GraphQLInt, defaultValue: 0 },
     person: {
       type: GraphQLID,
       description: "A global identifier of a person."
-    },
-    limit: { type: GraphQLInt },
-    offset: { type: GraphQLInt }
+    }
   },
   resolve: (root, args, context) => new PersonVisaService(context).list(args)
 };

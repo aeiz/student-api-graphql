@@ -20,11 +20,10 @@ const CitizenshipStatusesQuery = {
   type: new GraphQLList(CitizenshipStatusType),
   description: "Provides the list of Citizenship Statuses.",
   args: {
-    limit: { type: GraphQLInt },
-    offset: { type: GraphQLInt },
+    limit: { type: GraphQLInt, defaultValue: 500 },
+    offset: { type: GraphQLInt, defaultValue: 0 },
     sort: { type: SortByCodeOrTitle },
-    order: { type: OrderAscDescArg },
-    type: { type: GraphQLString }
+    order: { type: OrderAscDescArg }
   },
   resolve: (root, args, context) =>
     new CitizenshipStatusService(context).list(args)

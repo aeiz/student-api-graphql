@@ -20,8 +20,8 @@ const StudentAcademicPeriodProfilesQuery = {
   type: new GraphQLList(StudentAcademicPeriodProfileType),
   description: "This API returns a list of Term Enrollment information.",
   args: {
-    limit: { type: GraphQLInt },
-    offset: { type: GraphQLInt },
+    limit: { type: GraphQLInt, defaultValue: 500 },
+    offset: { type: GraphQLInt, defaultValue: 0 },
     person: { type: GraphQLID },
     academicPeriod: { type: GraphQLID }
   },

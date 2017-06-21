@@ -20,8 +20,8 @@ const GradeSchemesQuery = {
   type: new GraphQLList(GradeSchemeType),
   description: "Provides the list of grade schemes.",
   args: {
-    limit: { type: GraphQLInt },
-    offset: { type: GraphQLInt },
+    limit: { type: GraphQLInt, defaultValue: 500 },
+    offset: { type: GraphQLInt, defaultValue: 0 },
     sort: { type: SortByCode },
     order: { type: OrderAscDescArg }
   },

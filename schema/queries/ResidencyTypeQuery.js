@@ -25,10 +25,10 @@ const ResidencyTypesQuery = {
   type: new GraphQLList(ResidencyTypeType),
   description: "Provide the list of residency types.",
   args: {
-    limit: { type: GraphQLInt },
-    offset: { type: GraphQLInt },
-    sort: { type: SortByCodeOrTitle },
-    order: { type: OrderAscDescArg }
+    limit: { type: GraphQLInt, defaultValue: 500 },
+    offset: { type: GraphQLInt, defaultValue: 0 },
+    sort: { type: SortByCodeOrTitle, defaultValue: "code" },
+    order: { type: OrderAscDescArg, defaultValue: "asc" }
   },
   resolve: (root, args, context) => new ResidencyTypeService(context).list(args)
 };

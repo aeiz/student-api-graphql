@@ -21,8 +21,8 @@ const EnrollmentStatusesQuery = {
   type: new GraphQLList(EnrollmentStatusType),
   description: "This API returns the list of active enrollment statuses.",
   args: {
-    limit: { type: GraphQLInt },
-    offset: { type: GraphQLInt }
+    limit: { type: GraphQLInt, defaultValue: 500 },
+    offset: { type: GraphQLInt, defaultValue: 0 }
   },
   resolve: (root, args, context) =>
     new EnrollmentStatusService(context).list(args)

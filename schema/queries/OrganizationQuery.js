@@ -20,8 +20,8 @@ const OrganizationsQuery = {
   type: new GraphQLList(OrganizationType),
   description: "Retrieves the list of all non-person records from SPRIDEN.",
   args: {
-    limit: { type: GraphQLInt },
-    offset: { type: GraphQLInt },
+    limit: { type: GraphQLInt, defaultValue: 500 },
+    offset: { type: GraphQLInt, defaultValue: 0 },
     role: {
       type: new GraphQLEnumType({
         name: "OrganizationsRoleArgEnumVendor",

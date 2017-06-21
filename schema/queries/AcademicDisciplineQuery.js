@@ -21,11 +21,10 @@ const AcademicDisciplinesQuery = {
   type: new GraphQLList(AcademicDisciplineType),
   description: "Provides the list of all disciplines.",
   args: {
-    limit: { type: GraphQLInt },
-    offset: { type: GraphQLInt },
+    limit: { type: GraphQLInt, defaultValue: 500},
+    offset: { type: GraphQLInt, defaultValue: 0 },
     sort: { type: SortByTypeOrAbbreviation },
     order: { type: OrderAscDescArg },
-    // TODO: enum for type?
     type: { type: GraphQLString }
   },
   resolve: (root, args, context) =>

@@ -18,8 +18,8 @@ const AddressesQuery = {
   type: new GraphQLList(AddressType),
   description: "This API returns a list of Addresses information.",
   args: {
-    limit: { type: GraphQLInt },
-    offset: { type: GraphQLInt }
+    limit: { type: GraphQLInt, defaultValue: 500 },
+    offset: { type: GraphQLInt, offset: 0 }
   },
   resolve: (root, args, context) => new AddressService(context).list(args)
 };

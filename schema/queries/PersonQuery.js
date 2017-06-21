@@ -1,5 +1,6 @@
 import { GraphQLID, GraphQLList, GraphQLInt, GraphQLString } from "graphql";
 import { PersonType } from "../types";
+import { OrderAscDescArg } from "../types/args";
 import { PersonService } from "../../services";
 
 const PersonQuery = {
@@ -18,12 +19,12 @@ const PersonsQuery = {
   type: new GraphQLList(PersonType),
   description: "Retrieves the list of all persons.",
   args: {
-    limit: { type: GraphQLInt },
-    offset: { type: GraphQLInt },
-    sort: { type: GraphQLString },
-    order: { type: GraphQLString },
+    limit: { type: GraphQLInt, defaultValue: 500 },
+    offset: { type: GraphQLInt, defaultValue: 0 },
+    sort: { type: GraphQLString, defaultValue: "lastName" },
+    order: { type: OrderAscDescArg, defaultValue: "asc" },
     role: { type: GraphQLString },
-    personFilter: { type: GraphQLString },
+    personFilter: { type: GraphQLID },
     credentialType: { type: GraphQLString },
     credentialValue: { type: GraphQLString }
   },

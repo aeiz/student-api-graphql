@@ -18,8 +18,8 @@ const CampusOrganizationQuery = {
 const CampusOrganizationsQuery = {
   type: new GraphQLList(CampusOrganizationType),
   args: {
-    limit: { type: GraphQLInt },
-    offset: { type: GraphQLInt }
+    limit: { type: GraphQLInt, defaultValue: 500 },
+    offset: { type: GraphQLInt, defaultValue: 0 }
   },
   resolve: (root, args, context) =>
     new CampusOrganizationService(context).list(args)

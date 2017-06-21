@@ -19,8 +19,8 @@ const PersonHoldsQuery = {
   type: new GraphQLList(PersonHoldType),
   description: "Provides the list of all persons holds.",
   args: {
-    limit: { type: GraphQLInt },
-    offset: { type: GraphQLInt },
+    limit: { type: GraphQLInt, defaultValue: 500 },
+    offset: { type: GraphQLInt, defaultValue: 0 },
     person: {
       type: GraphQLID,
       description: "A global identifier for a person."

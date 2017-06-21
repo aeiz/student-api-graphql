@@ -20,8 +20,8 @@ const PersonHoldTypesQuery = {
   type: new GraphQLList(PersonHoldTypeType),
   description: "Provides the list of all hold types defined for a person.",
   args: {
-    limit: { type: GraphQLInt },
-    offset: { type: GraphQLInt }
+    limit: { type: GraphQLInt, defaultValue: 500 },
+    offset: { type: GraphQLInt, defaultValue: 0 }
   },
   resolve: (root, args, context) =>
     new PersonHoldTypeService(context).list(args)

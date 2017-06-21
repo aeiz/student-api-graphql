@@ -19,8 +19,8 @@ const PersonalRelationshipTypesQuery = {
   type: new GraphQLList(PersonalRelationshipTypeType),
   description: "Provide the list of relationship types.",
   args: {
-    limit: { type: GraphQLInt },
-    offset: { type: GraphQLInt }
+    limit: { type: GraphQLInt, defaultValue: 500 },
+    offset: { type: GraphQLInt, defaultValue: 0 }
   },
   resolve: (root, args, context) =>
     new PersonalRelationshipTypeService(context).list(args)

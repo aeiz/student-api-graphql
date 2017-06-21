@@ -22,8 +22,8 @@ const CampusInvolvementsQuery = {
   description: "Provide the list of student and their activities," +
     " sports and committees in Banner.",
   args: {
-    limit: { type: GraphQLInt },
-    offset: { type: GraphQLInt }
+    limit: { type: GraphQLInt, defaultValue: 500 },
+    offset: { type: GraphQLInt, defaultValue: 0 }
   },
   resolve: (root, args, context) =>
     new CampusInvolvementService(context).list(args)

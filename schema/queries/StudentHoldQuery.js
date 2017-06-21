@@ -1,8 +1,6 @@
 import {
-  GraphQLString,
-  GraphQLList,
-  GraphQLInt,
-  GraphQLEnumType
+  GraphQLID,
+  GraphQLList
 } from "graphql";
 import { StudentHoldType } from "../types";
 import { StudentHoldService } from "../../services";
@@ -12,7 +10,7 @@ const StudentHoldsQuery = {
   description: "Provides the student’s current holds information.",
   args: {
     bannerId: {
-      type: GraphQLString,
+      type: GraphQLID,
       description: "The identification number used to access a person"
     }
   },

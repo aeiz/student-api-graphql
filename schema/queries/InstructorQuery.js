@@ -18,8 +18,8 @@ const InstructorsQuery = {
   type: new GraphQLList(InstructorType),
   description: "Provide the list of instructors.",
   args: {
-    limit: { type: GraphQLInt },
-    offset: { type: GraphQLInt },
+    limit: { type: GraphQLInt, defaultValue: 500 },
+    offset: { type: GraphQLInt, defaultValue: 0 },
     instructor: { type: GraphQLID }
   },
   resolve: (root, args, context) => new InstructorService(context).list(args)

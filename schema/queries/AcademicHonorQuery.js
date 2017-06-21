@@ -21,8 +21,8 @@ const AcademicHonorsQuery = {
   type: new GraphQLList(AcademicHonorType),
   description: "Provides the list of all honors.",
   args: {
-    limit: { type: GraphQLInt },
-    offset: { type: GraphQLInt },
+    limit: { type: GraphQLInt, defaultValue: 500 },
+    offset: { type: GraphQLInt, defaultValue: 0 },
     sort: { type: GraphQLString }, // TODO: add enum
     order: { type: OrderAscDescArg },
     type: { type: GraphQLString } // TODO: enum for type?

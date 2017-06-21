@@ -23,10 +23,10 @@ const StudentClassificationsQuery = {
   type: new GraphQLList(StudentClassificationType),
   description: "Provide the list of student classifications.",
   args: {
-    limit: { type: GraphQLInt },
-    offset: { type: GraphQLInt },
-    sort: { type: SortByCodeOrTitle },
-    order: { type: OrderAscDescArg }
+    limit: { type: GraphQLInt, defaultValue: 500 },
+    offset: { type: GraphQLInt, defaultValue: 0 },
+    sort: { type: SortByCodeOrTitle, defaultValue: "code" },
+    order: { type: OrderAscDescArg, defaultValue: "asc" }
   },
   resolve: (root, args, context) =>
     new StudentClassificationService(context).list(args)

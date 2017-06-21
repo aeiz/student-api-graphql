@@ -19,8 +19,8 @@ const PersonsCredentialsQuery = {
   type: new GraphQLList(PersonCredentialsType),
   description: "This API provides a list of all persons credentials.",
   args: {
-    limit: { type: GraphQLInt },
-    offset: { type: GraphQLInt }
+    limit: { type: GraphQLInt, defaultValue: 500 },
+    offset: { type: GraphQLInt, defaultValue: 0 }
   },
   resolve: (root, args, context) =>
     new PersonCredentialService(context).list(args)

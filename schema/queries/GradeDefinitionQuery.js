@@ -19,8 +19,8 @@ const GradeDefinitionsQuery = {
   type: new GraphQLList(GradeDefinitionType),
   description: "Provides the list of valid grades.",
   args: {
-    limit: { type: GraphQLInt },
-    offset: { type: GraphQLInt }
+    limit: { type: GraphQLInt, defaultValue: 500 },
+    offset: { type: GraphQLInt, defaultValue: 0 }
   },
   resolve: (root, args, context) =>
     new GradeDefinitionService(context).list(args)

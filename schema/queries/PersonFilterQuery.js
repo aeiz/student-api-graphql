@@ -5,7 +5,7 @@ import {
   GraphQLInt,
   GraphQLEnumType
 } from "graphql";
-import { OrderAscDescArg } from "../types/args";
+import { OrderAscDescArg, SortByCode } from "../types/args";
 import { PersonFilterType } from "../types";
 import { PersonFilterService } from "../../services";
 
@@ -27,17 +27,9 @@ const PersonFiltersQuery = {
   type: new GraphQLList(PersonFilterType),
   description: "This API returns the list of population selections.",
   args: {
-    limit: { type: GraphQLInt },
-    offset: { type: GraphQLInt },
-    sort: {
-      type: new GraphQLEnumType({
-        name: "PersonFiltersSort",
-        description: "Allowed values for sort parameter",
-        values: {
-          code: { value: "code" }
-        }
-      })
-    },
+    limit: { type: GraphQLInt, defaultValue: 500 },
+    offset: { type: GraphQLInt, defaultValue: 0 },
+    sort: { type: SortByCode },
     order: { type: OrderAscDescArg },
     code: { type: GraphQLString }
   },
