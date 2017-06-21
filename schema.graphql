@@ -2108,6 +2108,33 @@ type Query {
   # This API provides a list of all students.
   students(limit: Int, offset: Int, person: ID, residency: ID, type: ID, cohorts: ID): [Student]
 
+  # This API returns a Term Enrollment information by given id.
+  studentAcademicPeriodProfile(
+    # The global identifier of the student academic period profile (SFBETRM).
+    id: ID
+  ): StudentAcademicPeriodProfile
+
+  # This API returns a list of Term Enrollment information.
+  studentAcademicPeriodProfiles(limit: Int, offset: Int, person: ID, academicPeriod: ID): [StudentAcademicPeriodProfile]
+
+  # Provide a student academic standing record for the given id.
+  studentAcademicStanding(
+    # A global identifier of a student academic standing record
+    id: ID
+  ): StudentAcademicStanding
+
+  # Provide the list of student academic standings.
+  studentAcademicStandings(limit: Int, offset: Int): [StudentAcademicStanding]
+
+  # Determines if the given student is eligibile to register in the given term at this point in time.
+  studentRegistrationEligibility(
+    # person GUID
+    student: ID
+
+    # term GUID
+    academicPeriod: ID
+  ): StudentRegistrationEligibility
+
   # Returns the student classification resource for a given ID.
   studentClassification(id: String): StudentClassification
 
@@ -2441,6 +2468,119 @@ type Student {
   type: StudentType
 }
 
+# Student Academic Period Profile
+type StudentAcademicPeriodProfile {
+  # The global identifier of the student academic period profile (SFBETRM).
+  id: ID
+
+  # A reference to link a student to the common HEDM persons entity.
+  personId: ID
+
+  # Person Record for Student
+  person: Person
+
+  # A term within an academic year (for example, Semester).
+  academicPeriodId: ID
+
+  # Academic Period
+  academicPeriod: AcademicPeriod
+
+  # Status of the student for a given academic period (STVSTST).
+  studentStatusId: ID
+
+  # Student Status
+  studentStatus: StudentStatus
+
+  # Type of the student for the academic period (STVSTYP).
+  typeId: ID
+
+  # Student Type
+  type: StudentType
+
+  # The residency type of the student for the academic period (e.g.: international, in state, out of state, etc.) (STVRESD).
+  residencyId: ID
+
+  # Residency Type
+  residency: ResidencyType
+
+  # Status of the student enrollment for a given academic period (STVESTS).
+  academicPeriodEnrollmentStatusId: ID
+
+  # Academic Period Enrollment Status
+  academicPeriodEnrollmentStatus: AcademicPeriodEnrollmentStatus
+
+  # The relative load (full-time, part-time, overload) of a student during the
+  # academic period based on the number of contact hours or credits
+  academicLoad: String
+
+  # List of Student Tags
+  tags: [StudentTag]
+
+  # The global identifier of a class code(STVCLAS_GUID)
+  classificationId: ID
+
+  # Student Classification
+  classification: StudentClassification
+
+  # A globally unique identifier of the academic level.
+  levelId: ID
+
+  # Academic Level
+  level: AcademicLevel
+
+  # GPA for the level. Calculated by dividing GPA hours for the level into Quality points for the level
+  performanceMeasure: String
+}
+
+# Student Academic Standing
+type StudentAcademicStanding {
+  # The global identifier of the student academic standing.
+  id: ID
+
+  # The type of academic standing calculation used to determine the student
+  # academic standing (e.g. level, program, academicPeriod).
+  type: String
+
+  # The global identifier for the Student.
+  studentId: ID
+
+  # Student Record
+  student: Student
+
+  # The global identifier for the Level.
+  levelId: ID
+
+  # Academic Level
+  level: AcademicLevel
+
+  # The global identifier for the Program.
+  programId: ID
+
+  # Academic Program
+  program: AcademicProgram
+
+  # The global identifier for the Academic Period.
+  academicPeriodId: ID
+
+  # Academic Period
+  academicPeriod: AcademicPeriod
+
+  # The global identifier for the Standing.
+  standingId: ID
+
+  # Academic Standing
+  standing: AcademicStandingType
+
+  # The global identifier for the Override Standing.
+  overrideStandingId: ID
+
+  # Override Academic Standing
+  overrideStanding: AcademicStandingType
+
+  # The reason the calculated academic standing was overridden.
+  overrideReason: String
+}
+
 # Student Classification
 type StudentClassification {
   # A global identifier of a class code(STVCLAS_GUID).
@@ -2547,6 +2687,33 @@ type StudentHold {
 
   # Field that identifies the end date hold expires
   toDate: String
+}
+
+# Student Registration Eligibility
+type StudentRegistrationEligibility {
+  # A global identifier of a person.
+  studentId: ID
+
+  # Student
+  student: Student
+
+  # The global identifier of a term.
+  academicPeriodId: ID
+
+  # Academic Period
+  academicPeriod: AcademicPeriod
+
+  # eligible or ineligible
+  eligibilityStatus: String
+
+  # Start date of term YYYY-dd-MM
+  startOn: String
+
+  # End date of term YYYY-dd-MM
+  endOn: String
+
+  # required or notRequired
+  alternatePin: String
 }
 
 # Student Status
