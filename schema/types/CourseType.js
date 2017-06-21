@@ -3,12 +3,26 @@ import {
   GraphQLID,
   GraphQLString,
   GraphQLList,
-  GraphQLBoolean
+  GraphQLInt
 } from "graphql";
 
-import { SubjectType } from ".";
+import {
+  AcademicLevelType,
+  CreditCategoryType,
+  EducationalInstitutionUnitType,
+  GradeSchemeType,
+  InstructionalMethodType,
+  SubjectType
+} from ".";
 
-import { SubjectService } from "../../services";
+import {
+  AcademicLevelService,
+  CreditCategoryService,
+  EducationalInstitutionUnitService,
+  GradeSchemeService,
+  InstructionalMethodService,
+  SubjectService
+} from "../../services";
 
 const CourseType = new GraphQLObjectType({
   name: "Course",
@@ -51,12 +65,97 @@ const CourseType = new GraphQLObjectType({
       description: "Subject",
       resolve: (root, args, context) =>
         new SubjectService(context).load(root.subject.id)
+    },
+    owningInstitutionUnits: {
+      type: new GraphQLList(
+        new GraphQLObjectType({
+          name: "OwningInstitutionUnit",
+          description: "Course",
+          fields: () => ({
+            institutionUnit: {
+              type: EducationalInstitutionUnitType,
+              description: "Institution Unit",
+              resolve: (root, args, context) =>
+                new EducationalInstitutionUnitService(context).load(
+                  root.institutionUnit.id
+                )
+            },
+            ownershipPercentage: {
+              type: GraphQLString,
+              description: "A part or portion of something owned, allotted to," +
+                " or contributed by a person or group (not used in Banner)"
+            }
+          })
+        })
+      ),
+      description: "List of Owning Institution Units"
+    },
+    academicLevels: {
+      type: new GraphQLList(AcademicLevelType),
+      description: "List of Academic Levels",
+      resolve: (root, args, context) =>
+        new AcademicLevelService(context).loadMany(
+          (root.academicLevels || Array())
+            .map(academicLevel => academicLevel.id)
+        )
+    },
+    gradeSchemes: {
+      type: new GraphQLList(GradeSchemeType),
+      description: "List of Grade Schemes",
+      resolve: (root, args, context) =>
+        new GradeSchemeService(context).loadMany(
+          (root.gradeSchemes || Array()).map(gradeScheme => gradeScheme.id)
+        )
+    },
+    instructionalMethods: {
+      type: new GraphQLList(InstructionalMethodType),
+      description: "List of Instructional Methods",
+      resolve: (root, args, context) =>
+        new InstructionalMethodService(context).loadMany(
+          (root.instructionalMethods || Array())
+            .map(instructionalMethod => instructionalMethod.id)
+        )
+    },
+    credits: {
+      type: new GraphQLList(
+        new GraphQLObjectType({
+          name: "Credit",
+          description: "Credit",
+          fields: () => ({
+            creditCategory: {
+              type: CreditCategoryType,
+              description: "Credit Category",
+              resolve: (root, args, context) =>
+                new CreditCategoryService(context).load(
+                  root.creditCategory.detail.id
+                )
+            },
+            increment: {
+              type: GraphQLInt,
+              description: "It is the multiple by which a numeric range" +
+                " of values can be stepped from the minimum to the maximum" +
+                " (not used in Banner)"
+            },
+            measure: {
+              type: GraphQLString,
+              description: "A unit or standard of measurement" +
+                " (not used in Banner)"
+            },
+            minimum: {
+              type: GraphQLInt,
+              description: "Minimum number of credit hours for which a" +
+                " course may be offered"
+            },
+            maximum: {
+              type: GraphQLInt,
+              description: "Maximum number of credit hours for which a" +
+                " course may be offered"
+            }
+          })
+        })
+      ),
+      description: "List of Credits"
     }
-    // TODO: owningInstitutionUnits
-    // TODO: academicLevels
-    // TODO: gradeSchemes
-    // TODO: instructionalMethods
-    // TODO: credits
   })
 });
 

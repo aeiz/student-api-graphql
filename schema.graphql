@@ -498,6 +498,21 @@ type Course {
 
   # Subject
   subject: Subject
+
+  # List of Owning Institution Units
+  owningInstitutionUnits: [OwningInstitutionUnit]
+
+  # List of Academic Levels
+  academicLevels: [AcademicLevel]
+
+  # List of Grade Schemes
+  gradeSchemes: [GradeScheme]
+
+  # List of Instructional Methods
+  instructionalMethods: [InstructionalMethod]
+
+  # List of Credits
+  credits: [Credit]
 }
 
 # Course Registration Status
@@ -532,6 +547,24 @@ type Credential {
   endOn: String
 }
 
+# Credit
+type Credit {
+  # Credit Category
+  creditCategory: CreditCategory
+
+  # It is the multiple by which a numeric range of values can be stepped from the minimum to the maximum (not used in Banner)
+  increment: Int
+
+  # A unit or standard of measurement (not used in Banner)
+  measure: String
+
+  # Minimum number of credit hours for which a course may be offered
+  minimum: Int
+
+  # Maximum number of credit hours for which a course may be offered
+  maximum: Int
+}
+
 # Credit Category
 type CreditCategory {
   # A global identifier of a credit category.
@@ -563,6 +596,9 @@ type EducationalInstitution {
 
   # Indicates if this is a 'home' or 'external' institution'
   homeInstitution: String
+
+  # List of Addresses
+  addresses: [Address]
 }
 
 # Educational Institution Unit
@@ -1162,6 +1198,15 @@ type Organization {
 # Allowed values for role parameter
 enum OrganizationsRoleArgEnumVendor {
   vendor
+}
+
+# Course
+type OwningInstitutionUnit {
+  # Institution Unit
+  institutionUnit: EducationalInstitutionUnit
+
+  # A part or portion of something owned, allotted to, or contributed by a person or group (not used in Banner)
+  ownershipPercentage: String
 }
 
 # Person

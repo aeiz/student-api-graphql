@@ -112,14 +112,12 @@ const RootQuery = new GraphQLObjectType({
     // TODO: Fix
     classSchedules: Queries.ClassSchedulesQuery,
 
-    // TODO: finish type definition
     course: Queries.CourseQuery,
     courses: Queries.CoursesQuery,
 
     creditCategory: Queries.CreditCategoryQuery,
     creditCategories: Queries.CreditCategoriesQuery,
 
-    // TODO: Fix type definition
     educationalInstitution: Queries.EducationalInstitutionQuery,
     educationalInstitutions: Queries.EducationalInstitutionsQuery,
 
@@ -242,8 +240,7 @@ const RootQuery = new GraphQLObjectType({
     restrictionType: Queries.RestrictionTypeQuery,
     restrictionTypes: Queries.RestrictionTypesQuery,
 
-    // TODO: Implement rooms for 9.8?
-    // TODO: rooms
+    // TODO: rooms, Implement rooms for 9.8?
     room: Queries.RoomQuery,
     rooms: Queries.RoomsQuery,
 
