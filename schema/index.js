@@ -290,12 +290,13 @@ const RootQuery = new GraphQLObjectType({
     student: Queries.StudentQuery,
     students: Queries.StudentsQuery,
 
-    studentAcademicPeriodProfile:Queries.StudentAcademicPeriodProfileQuery,
-    studentAcademicPeriodProfiles:Queries.StudentAcademicPeriodProfilesQuery,
-    
+    studentAcademicPeriodProfile: Queries.StudentAcademicPeriodProfileQuery,
+    studentAcademicPeriodProfiles: Queries.StudentAcademicPeriodProfilesQuery,
+
     // TODO: student-academic-programs
     // TODO: student-academic-standings
-    // TODO: student-registration-eligibilities
+    
+    studentRegistrationEligibility: Queries.StudentRegistrationEligibilityQuery,
 
     studentClassification: Queries.StudentClassificationQuery,
     studentClassifications: Queries.StudentClassificationsQuery,

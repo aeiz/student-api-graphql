@@ -252,6 +252,10 @@ export { StudentGradesQuery } from "./StudentGradeQuery";
 
 export { StudentHoldsQuery } from "./StudentHoldQuery";
 
+export {
+  StudentRegistrationEligibilityQuery
+} from "./StudentRegistrationEligibilityQuery";
+
 export { StudentStatusQuery, StudentStatusesQuery } from "./StudentStatusQuery";
 
 export { StudentTagQuery, StudentTagsQuery } from "./StudentTagQuery";

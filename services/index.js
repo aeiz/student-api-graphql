@@ -75,12 +75,17 @@ export {
 } from "./SectionRegistrationStatusService";
 export { SiteService } from "./SiteService";
 export { StudentService } from "./StudentService";
-export { StudentAcademicPeriodProfileService } from "./StudentAcademicPeriodProfileService";
+export {
+  StudentAcademicPeriodProfileService
+} from "./StudentAcademicPeriodProfileService";
 export { StudentClassificationService } from "./StudentClassificationService";
 export { StudentClassScheduleService } from "./StudentClassScheduleService";
 export { StudentCohortService } from "./StudentCohortService";
 export { StudentGradeService } from "./StudentGradeService";
 export { StudentHoldService } from "./StudentHoldService";
+export {
+  StudentRegistrationEligibilityService
+} from "./StudentRegistrationEligibilityService";
 export { StudentStatusService } from "./StudentStatusService";
 export { StudentTagService } from "./StudentTagService";
 export { StudentTypeService } from "./StudentTypeService";

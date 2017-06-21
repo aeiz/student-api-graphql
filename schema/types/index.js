@@ -89,6 +89,9 @@ export { StudentClassificationType } from "./StudentClassificationType";
 export { StudentCohortType } from "./StudentCohortType";
 export { StudentGradeType } from "./StudentGradeType";
 export { StudentHoldType } from "./StudentHoldType";
+export {
+  StudentRegistrationEligibilityType
+} from "./StudentRegistrationEligibilityType";
 export { StudentStatusType } from "./StudentStatusType";
 export { StudentTagType } from "./StudentTagType";
 export { StudentTypeType } from "./StudentTypeType";
