@@ -1,12 +1,7 @@
 import createDebug from "debug";
 const debug = createDebug("schema");
 
-import {
-  GraphQLList,
-  GraphQLObjectType,
-  GraphQLSchema,
-  GraphQLString
-} from "graphql";
+import { GraphQLObjectType, GraphQLSchema } from "graphql";
 
 import * as Queries from "./queries";
 import * as Mutations from "./mutations";
@@ -294,7 +289,7 @@ const RootQuery = new GraphQLObjectType({
     studentAcademicPeriodProfiles: Queries.StudentAcademicPeriodProfilesQuery,
 
     // TODO: student-academic-programs
-    // TODO: student-academic-standings
+
     studentAcademicStanding: Queries.StudentAcademicStandingQuery,
     studentAcademicStandings: Queries.StudentAcademicStandingsQuery,
 
