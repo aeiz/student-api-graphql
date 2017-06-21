@@ -23,7 +23,7 @@ const InstructionalEventType = new GraphQLObjectType({
       description: "Globally unique identifier of the section (SSBSECT)",
       resolve: (root, args, context) => root.section.id
     },
-    // section
+    // TODO: section
     instructionalMethodId: {
       type: GraphQLString,
       description: "Globally-unique identifier of instructional method" +

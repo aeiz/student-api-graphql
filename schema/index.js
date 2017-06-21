@@ -119,8 +119,6 @@ const RootQuery = new GraphQLObjectType({
     creditCategory: Queries.CreditCategoryQuery,
     creditCategories: Queries.CreditCategoriesQuery,
 
-    // TODO: Fix SchemaValidation error in StudentAPI:
-    //  Mapping for ADDRESSES.DEFAULT.ADDRESSTYPE is not valid
     // TODO: Fix type definition
     educationalInstitution: Queries.EducationalInstitutionQuery,
     educationalInstitutions: Queries.EducationalInstitutionsQuery,
@@ -192,7 +190,6 @@ const RootQuery = new GraphQLObjectType({
     maritalStatus: Queries.MaritalStatusQuery,
     maritalStatuses: Queries.MaritalStatusesQuery,
 
-    // TODO: organization, finish type definition
     organization: Queries.OrganizationQuery,
     organizations: Queries.OrganizationsQuery,
 
@@ -208,7 +205,7 @@ const RootQuery = new GraphQLObjectType({
     personFilter: Queries.PersonFilterQuery,
     personFilters: Queries.PersonFiltersQuery,
 
-    // TODO: person-guardians, Mapping for ADDRESS.COUNTRY.DEFAULT is not valid
+    // TODO: person-guardians
 
     personHold: Queries.PersonHoldQuery,
     personHolds: Queries.PersonHoldsQuery,
@@ -216,13 +213,6 @@ const RootQuery = new GraphQLObjectType({
     personVisa: Queries.PersonVisaQuery,
     personVisas: Queries.PersonVisasQuery,
 
-    /*
-    TODO: Fix SchemaValidation error in StudentAPI for person hold type
-    {
-      "code": "Global.SchemaValidation.Error",
-      "message": "Person hold type not found",
-      "description": "Errors parsing input JSON."
-    }*/
     personHoldType: Queries.PersonHoldTypeQuery,
     personHoldTypes: Queries.PersonHoldTypesQuery,
 
@@ -234,15 +224,12 @@ const RootQuery = new GraphQLObjectType({
 
     personRestrictionTypes: Queries.PersonRestrictionTypesQuery,
 
-    // TODO: Fix SchemaValidation error in StudentAPI:
-    // A mapping rule does not exist for PERSONAL.RELATIONSHIP.TYPES
     personalRelationshipType: Queries.PersonalRelationshipTypeQuery,
     personalRelationshipTypes: Queries.PersonalRelationshipTypesQuery,
 
     phoneType: Queries.PhoneTypeQuery,
     phoneTypes: Queries.PhoneTypesQuery,
 
-    // TODO: A mapping rule does not exist for RACE.RACIALCATEGORY.V6
     race: Queries.RaceQuery,
     races: Queries.RacesQuery,
 
@@ -269,7 +256,7 @@ const RootQuery = new GraphQLObjectType({
     roomType: Queries.RoomTypeQuery,
     roomTypes: Queries.RoomTypesQuery,
 
-    // TODO: sections, A mapping rule does not exist for SECTIONDETAIL.STATUS.V4
+    // TODO: sections
 
     sectionCrossList: Queries.SectionCrossListQuery,
     sectionCrossLists: Queries.SectionCrossListsQuery,
