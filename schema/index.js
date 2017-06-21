@@ -295,7 +295,9 @@ const RootQuery = new GraphQLObjectType({
 
     // TODO: student-academic-programs
     // TODO: student-academic-standings
-    
+    studentAcademicStanding: Queries.StudentAcademicStandingQuery,
+    studentAcademicStandings: Queries.StudentAcademicStandingsQuery,
+
     studentRegistrationEligibility: Queries.StudentRegistrationEligibilityQuery,
 
     studentClassification: Queries.StudentClassificationQuery,

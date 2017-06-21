@@ -85,6 +85,7 @@ export { StudentType } from "./StudentType";
 export {
   StudentAcademicPeriodProfileType
 } from "./StudentAcademicPeriodProfileType";
+export { StudentAcademicStandingType } from "./StudentAcademicStandingType";
 export { StudentClassificationType } from "./StudentClassificationType";
 export { StudentCohortType } from "./StudentCohortType";
 export { StudentGradeType } from "./StudentGradeType";

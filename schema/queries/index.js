@@ -242,6 +242,11 @@ export {
 } from "./StudentAcademicPeriodProfileQuery";
 
 export {
+  StudentAcademicStandingQuery,
+  StudentAcademicStandingsQuery
+} from "./StudentAcademicStandingQuery";
+
+export {
   StudentClassificationQuery,
   StudentClassificationsQuery
 } from "./StudentClassificationQuery";
