@@ -1,7 +1,7 @@
 # student-api-graphql
 A [GraphQL](http://graphql.org/) Wrapper for [Ellucian](http://www.ellucian.com/)'s Banner Student REST API
 
-####Disclaimer
+###Disclaimer
 This project is a work in progress!
 
 ##Install
