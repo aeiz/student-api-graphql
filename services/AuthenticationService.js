@@ -1,15 +1,8 @@
 import fetch from "node-fetch";
 import jwt from "jsonwebtoken";
-import crypto from "crypto";
 import config from "../config";
+import { encrypt } from "../utils/crypto";
 import { BaseService } from ".";
-
-function encrypt(text) {
-  let cipher = crypto.createCipher(config.CRYPTO_ALGO, config.JWT_SECRET);
-  let encrypted = cipher.update(text, "utf8", "hex");
-  encrypted += cipher.final("hex");
-  return encrypted;
-}
 
 class AuthenticationService extends BaseService {
   login({ username, password }) {

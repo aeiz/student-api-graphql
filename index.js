@@ -5,42 +5,10 @@ import express from "express";
 import cors from "cors";
 import graphQLHTTP from "express-graphql";
 import { printSchema, printIntrospectionSchema } from "graphql/utilities";
-import jwt from "jsonwebtoken";
-import crypto from "crypto";
+import { getAuthorization } from "./utils/authorization";
 import config from "./config";
 import schema from "./schema";
 import createLoaders from "./loaders";
-
-function decrypt(text) {
-  let decipher = crypto.createDecipher(config.CRYPTO_ALGO, config.JWT_SECRET);
-  let decrypted = decipher.update(text, "hex", "utf8");
-  decrypted += decipher.final("utf8");
-  return decrypted;
-}
-
-function getAuthorization(header) {
-  if (!header) return null;
-
-  let authType = header.split(" ")[0].trim();
-  let token = header.split(" ")[1].trim();
-
-  debug("authType: " + authType);
-  debug("token: " + token);
-
-  if (authType === "Bearer") {
-    let { username, password } = jwt.verify(token, config.JWT_SECRET);
-    let authorization =
-      "Basic " +
-      new Buffer(username + ":" + decrypt(password)).toString("base64");
-    debug("username: " + username);
-    return authorization;
-  } else {
-    let authorization = Buffer.from(token, "base64").toString();
-    let username = authorization.split(":")[0];
-    debug("username: " + username);
-    return header;
-  }
-}
 
 const debug = createDebug("index");
 const app = express();
