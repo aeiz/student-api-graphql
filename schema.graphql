@@ -1117,10 +1117,306 @@ type Mutation {
   ): AuthenticationToken
 
   # This API creates a new academic credential record.
-  createAcademicCredential(abbreviation: String, title: String, id: String, type: String, description: String): AcademicCredential
+  createAcademicCredential(
+    # A global identifier for an academic degree.
+    id: ID!
+
+    # An abbreviation used to identify a degree (STVDEGC).
+    abbreviation: String
+
+    # The full name of an academic degree.
+    title: String
+
+    # The type of a degree such as 'degree', 'honorary', 'diploma', 'certificate' (GORSDAV).
+    type: String
+
+    # A full description of an academic degree (GORSDAV).
+    description: String
+  ): AcademicCredential
 
   # This API allows to update an academic credential with given ID.
-  updateAcademicCredential(abbreviation: String, title: String, id: String, type: String, description: String): AcademicCredential
+  updateAcademicCredential(
+    # A global identifier for an academic degree.
+    id: ID!
+
+    # An abbreviation used to identify a degree (STVDEGC).
+    abbreviation: String
+
+    # The full name of an academic degree.
+    title: String
+
+    # The type of a degree such as 'degree', 'honorary', 'diploma', 'certificate' (GORSDAV).
+    type: String
+
+    # A full description of an academic degree (GORSDAV).
+    description: String
+  ): AcademicCredential
+
+  # This API creates an academic discipline with given data in the request body.
+  createAcademicDiscipline(
+    # A global identifier for an academic discipline.
+    id: ID!
+
+    # An abbreviation that identifies an academic discipline (STVMAJR).
+    abbreviation: String
+
+    # The full name of an academic discipline.
+    title: String
+
+    # A type of academic discipline such as 'minor', 'major' and 'concentration'.
+    type: String
+  ): AcademicDiscipline
+
+  # This API allows to update an academic discipline with given ID.
+  updateAcademicDiscipline(
+    # A global identifier for an academic discipline.
+    id: ID!
+
+    # An abbreviation that identifies an academic discipline (STVMAJR).
+    abbreviation: String
+
+    # The full name of an academic discipline.
+    title: String
+
+    # A type of academic discipline such as 'minor', 'major' and 'concentration'.
+    type: String
+  ): AcademicDiscipline
+
+  # This API creates a new academic level record with given data in the request body.
+  createAcademicLevel(
+    # A globally unique identifier of the academic level.
+    id: ID!
+
+    # The code that identifies the academic level (e.g. 'UG').
+    code: String
+
+    # The full name of the academic level (e.g. 'Undergraduate').
+    title: String
+  ): AcademicLevel
+
+  # This API allows to update a academic level with given ID.
+  updateAcademicLevel(
+    # A globally unique identifier of the academic level.
+    id: ID!
+
+    # The code that identifies the academic level (e.g. 'UG').
+    code: String
+
+    # The full name of the academic level (e.g. 'Undergraduate').
+    title: String
+  ): AcademicLevel
+
+  # This API creates an ethnicity with given data in the request body.
+  createEthnicity(
+    # Globally-unique identifier of the ethnicity (STVETHN)
+    id: ID!
+
+    # A shortened or contracted form of a word or phrase, used to represent ethnicities code
+    abbreviation: String
+
+    # The ethnicities title
+    title: String
+
+    # The higher-level category of ethnicity
+    parentCategory: String
+  ): Ethnicity
+
+  # This API allows to update an ethnicity with given GUID.
+  updateEthnicity(
+    # Globally-unique identifier of the ethnicity (STVETHN)
+    id: ID!
+
+    # A shortened or contracted form of a word or phrase, used to represent ethnicities code
+    abbreviation: String
+
+    # The ethnicities title
+    title: String
+
+    # The higher-level category of ethnicity
+    parentCategory: String
+  ): Ethnicity
+
+  # This API creates a grade change reason with given data in the request body.
+  createGradeChangeReason(
+    # Globally-unique identifier of the grade change reason (STVGCHG)
+    id: ID!
+
+    # The code that identifies the grade change reason (e.g. 'OE')
+    code: String
+
+    # The full name of a grade change reason (e.g. 'Original Entry')
+    title: String
+  ): GradeChangeReason
+
+  # This API allows to update a grade change reason with given ID.
+  updateGradeChangeReason(
+    # Globally-unique identifier of the grade change reason (STVGCHG)
+    id: ID!
+
+    # The code that identifies the grade change reason (e.g. 'OE')
+    code: String
+
+    # The full name of a grade change reason (e.g. 'Original Entry')
+    title: String
+  ): GradeChangeReason
+
+  # This API creates a grade mode with given data in the request body.
+  createGradeMode(
+    # The global identifier of the grade modes.
+    id: ID!
+
+    # The code associated with the grade mode(STVGMOD).
+    code: String
+
+    # The full name of the grade modes.
+    title: String
+  ): GradeMode
+
+  # This API allows to update a grade mode with given ID.
+  updateGradeMode(
+    # The global identifier of the grade modes.
+    id: ID!
+
+    # The code associated with the grade mode(STVGMOD).
+    code: String
+
+    # The full name of the grade modes.
+    title: String
+  ): GradeMode
+
+  # This API creates a new instructional method record with given data in the request body.
+  createInstructionalMethod(
+    # A global identifier of an instructional method to be used in all external references.
+    id: ID!
+
+    # Human readable abbreviated name to an instructional method.
+    abbreviation: String
+
+    # The full name of an instructional method.
+    title: String
+  ): InstructionalMethod
+
+  # This API allows to update a instructional method with given ID.
+  updateInstructionalMethod(
+    # A global identifier of an instructional method to be used in all external references.
+    id: ID!
+
+    # Human readable abbreviated name to an instructional method.
+    abbreviation: String
+
+    # The full name of an instructional method.
+    title: String
+  ): InstructionalMethod
+
+  # This API creates a marital status with given data in the request body.
+  createMaritalStatus(
+    # The global identifier of a marital status to be used in all external references to a marital status (STVMRTL)
+    id: ID!
+
+    # The human readable code that identifies a marital status
+    code: String
+
+    # The full name of a marital status
+    title: String
+
+    # The name of a higher level marital category of which this category is a member
+    maritalCategory: String
+  ): MaritalStatus
+
+  # This API allows to update a marital status with given id.
+  updateMaritalStatus(
+    # The global identifier of a marital status to be used in all external references to a marital status (STVMRTL)
+    id: ID!
+
+    # The human readable code that identifies a marital status
+    code: String
+
+    # The full name of a marital status
+    title: String
+
+    # The name of a higher level marital category of which this category is a member
+    maritalCategory: String
+  ): MaritalStatus
+
+  # This API creates a race record with given data in the request body.
+  createRace(
+    # The global identifier of a race to be used in all external references to a race.
+    id: ID!
+
+    # Human readable code that identifies a racial category (GORRACE_RACE_CDE).
+    code: String
+
+    # The full name of a racial category (GORRACE_DESC).
+    title: String
+
+    # The name of a higher-level racial grouping of which this category is a member.
+    racialCategory: String
+  ): RaceType
+
+  # This API allows to update a race record with given id.
+  updateRace(
+    # The global identifier of a race to be used in all external references to a race.
+    id: ID!
+
+    # Human readable code that identifies a racial category (GORRACE_RACE_CDE).
+    code: String
+
+    # The full name of a racial category (GORRACE_DESC).
+    title: String
+
+    # The name of a higher-level racial grouping of which this category is a member.
+    racialCategory: String
+  ): RaceType
+
+  # This API creates a restriction type with given data in the request body.
+  createRestrictionType(
+    # A globally unique identifier (STVHLDD)
+    id: ID!
+
+    # A shortened or contracted form of a word or phrase, used to represent the
+    # whole, as Dr. for Doctor. Abbreviations are not assumed to be unique.
+    abbreviation: String
+
+    # The full name of the restriction class.
+    title: String
+  ): RestrictionType
+
+  # This API allows to update a restriction-type with given ID.
+  updateRestrictionType(
+    # A globally unique identifier (STVHLDD)
+    id: ID!
+
+    # A shortened or contracted form of a word or phrase, used to represent the
+    # whole, as Dr. for Doctor. Abbreviations are not assumed to be unique.
+    abbreviation: String
+
+    # The full name of the restriction class.
+    title: String
+  ): RestrictionType
+
+  # This API creates a subject with given data in the request body
+  createSubject(
+    # A global identifier of a subject to be used in all external references to the subject (STVSUBJ).
+    id: ID!
+
+    # Human readable abbreviated name to a subject.
+    abbreviation: String
+
+    # The full name of a subject.
+    title: String
+  ): Subject
+
+  # This API allows to update a subject with given ID.
+  updateSubject(
+    # A global identifier of a subject to be used in all external references to the subject (STVSUBJ).
+    id: ID!
+
+    # Human readable abbreviated name to a subject.
+    abbreviation: String
+
+    # The full name of a subject.
+    title: String
+  ): Subject
 }
 
 # Person Name

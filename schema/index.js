@@ -13,37 +13,37 @@ const RootMutation = new GraphQLObjectType({
     createAuthenticationToken: Mutations.createAuthenticationToken,
 
     createAcademicCredential: Mutations.createAcademicCredential,
-    updateAcademicCredential: Mutations.updateAcademicCredential
+    updateAcademicCredential: Mutations.updateAcademicCredential,
 
-    //createAcademicDiscipline: Mutations.createAcademicDiscipline,
-    //updateAcademicDiscipline: Mutations.updateAcademicDiscipline,
+    createAcademicDiscipline: Mutations.createAcademicDiscipline,
+    updateAcademicDiscipline: Mutations.updateAcademicDiscipline,
 
-    //createAcademicLevel: Mutations.createAcademicLevel,
-    //updateAcademicLevel: Mutations.updateAcademicLevel,
+    createAcademicLevel: Mutations.createAcademicLevel,
+    updateAcademicLevel: Mutations.updateAcademicLevel,
 
-    //createEthnicity: Mutations.createEthnicity,
-    //updateEthnicity: Mutations.updateEthnicity,
+    createEthnicity: Mutations.createEthnicity,
+    updateEthnicity: Mutations.updateEthnicity,
 
-    //createGradeChangeReason: Mutations.createGradeChangeReason,
-    //updateGradeChangeReason: Mutations.updateGradeChangeReason,
+    createGradeChangeReason: Mutations.createGradeChangeReason,
+    updateGradeChangeReason: Mutations.updateGradeChangeReason,
 
-    //createGradeMode: Mutations.createGradeMode,
-    //updateGradeMode: Mutations.updateGradeMode,
+    createGradeMode: Mutations.createGradeMode,
+    updateGradeMode: Mutations.updateGradeMode,
 
-    //createInstructionalMethod: Mutations.createInstructionalMethod,
-    //updateInstructionalMethod: Mutations.updateInstructionalMethod,
+    createInstructionalMethod: Mutations.createInstructionalMethod,
+    updateInstructionalMethod: Mutations.updateInstructionalMethod,
 
-    //createMaritalStatus: Mutations.createMaritalStatus,
-    //updateMaritalStatus: Mutations.updateMaritalStatus,
+    createMaritalStatus: Mutations.createMaritalStatus,
+    updateMaritalStatus: Mutations.updateMaritalStatus,
 
-    //createRace: Mutations.createRace,
-    //updateRace: Mutations.updateRace,
+    createRace: Mutations.createRace,
+    updateRace: Mutations.updateRace,
 
-    //createRestrictionType: Mutations.createRestrictionType,
-    //updateRestrictionType: Mutations.updateRestrictionType,
+    createRestrictionType: Mutations.createRestrictionType,
+    updateRestrictionType: Mutations.updateRestrictionType,
 
-    //createSubject: Mutations.createSubject,
-    //updateSubject: Mutations.updateSubject,
+    createSubject: Mutations.createSubject,
+    updateSubject: Mutations.updateSubject,
   })
 });
 

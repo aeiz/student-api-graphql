@@ -22,12 +22,26 @@ class RestrictionTypeService extends BaseService {
     ).then(json => json);
   }
 
+  // https://xedocs.ellucian.com/xe-banner-api/ethos_apis/student/validation/restriction_types_create_v4.html
   create(args) {
-    // TODO: Implement
+    return this.postByURL(
+      "application/vnd.hedtech.integration.v4+json",
+      "application/vnd.hedtech.integration.v4+json",
+      `restriction-types`,
+      args,
+      this.context.authorization
+    ).then(json => json);
   }
 
+  // https://xedocs.ellucian.com/xe-banner-api/ethos_apis/student/validation/restriction_types_update_v4.html
   update(args) {
-    // TODO: Implement
+    return this.putByURL(
+      "application/vnd.hedtech.integration.v4+json",
+      "application/vnd.hedtech.integration.v4+json",
+      `restriction-types/${args.id}`,
+      args,
+      this.context.authorization
+    ).then(json => json);
   }
 }
 

@@ -26,12 +26,26 @@ class AcademicDisciplineService extends BaseService {
     ).then(json => json);
   }
 
+  // https://xedocs.ellucian.com/xe-banner-api/ethos_apis/student/validation/academic_disciplines_create.html
   create(args) {
-    // TODO: Implement?
+    return this.postByURL(
+      "application/vnd.hedtech.integration.v4+json",
+      "application/vnd.hedtech.integration.v4+json",
+      `academic-disciplines`,
+      args,
+      this.context.authorization
+    ).then(json => json);
   }
 
+  // https://xedocs.ellucian.com/xe-banner-api/ethos_apis/student/validation/academic_disciplines_update.html
   update(args) {
-    // TODO: Implement?
+    return this.putByURL(
+      "application/vnd.hedtech.integration.v4+json",
+      "application/vnd.hedtech.integration.v4+json",
+      `academic-disciplines/${args.id}`,
+      args,
+      this.context.authorization
+    ).then(json => json);
   }
 }
 

@@ -3,6 +3,7 @@ import DataLoader from "dataloader";
 import createURLParameters from "./utils/createURLParameters";
 import fetchResponseByURL from "./utils/fetchResponseByURL";
 import postByURL from "./utils/postByURL";
+import putByURL from "./utils/putByURL";
 
 class BaseService {
   constructor(context) {
@@ -11,6 +12,7 @@ class BaseService {
     this.createURLParameters = createURLParameters;
     this.fetchResponseByURL = fetchResponseByURL;
     this.postByURL = postByURL;
+    this.putByURL = putByURL;
   }
 
   load(id) {

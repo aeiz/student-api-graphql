@@ -22,16 +22,26 @@ class GradeChangeReasonService extends BaseService {
     ).then(json => json);
   }
 
+  // https://xedocs.ellucian.com/xe-banner-api/ethos_apis/student/validation/grade_change_reasons_create_v4.html
   create(args) {
-    // TODO: Implement
-    debug("CREATE: This feature is not implemented.");
-    throw Error("Create not implemented.");
+    return this.postByURL(
+      "application/vnd.hedtech.integration.v4+json",
+      "application/vnd.hedtech.integration.v4+json",
+      `grade-change-reasons`,
+      args,
+      this.context.authorization
+    ).then(json => json);
   }
 
+  // https://xedocs.ellucian.com/xe-banner-api/ethos_apis/student/validation/grade_change_reasons_update_id_v4.html
   update(args) {
-    // TODO: Implement
-    debug("UPDATE: This feature is not implemented.");
-    throw Error("Update not implemented.");
+    return this.putByURL(
+      "application/vnd.hedtech.integration.v4+json",
+      "application/vnd.hedtech.integration.v4+json",
+      `grade-change-reasons/${args.id}`,
+      args,
+      this.context.authorization
+    ).then(json => json);
   }
 }
 

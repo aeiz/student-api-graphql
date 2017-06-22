@@ -21,6 +21,28 @@ class SubjectService extends BaseService {
       this.context.authorization
     ).then(json => json);
   }
+
+  // https://xedocs.ellucian.com/xe-banner-api/ethos_apis/student/validation/subjects_create_v4.html
+  create(args) {
+    return this.postByURL(
+      "application/vnd.hedtech.integration.v4+json",
+      "application/vnd.hedtech.integration.v4+json",
+      `subjects`,
+      args,
+      this.context.authorization
+    ).then(json => json);
+  }
+
+  // https://xedocs.ellucian.com/xe-banner-api/ethos_apis/student/validation/subjects_update_guid_v4.html
+  update(args) {
+    return this.putByURL(
+      "application/vnd.hedtech.integration.v4+json",
+      "application/vnd.hedtech.integration.v4+json",
+      `subjects/${args.id}`,
+      args,
+      this.context.authorization
+    ).then(json => json);
+  }
 }
 
 export { SubjectService };

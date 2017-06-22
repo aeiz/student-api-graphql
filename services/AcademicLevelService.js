@@ -22,12 +22,26 @@ class AcademicLevelService extends BaseService {
     ).then(json => json);
   }
 
+  // https://xedocs.ellucian.com/xe-banner-api/ethos_apis/student/validation/academic_levels_create_v4.html
   create(args) {
-    // TODO: Implement
+    return this.postByURL(
+      "application/vnd.hedtech.integration.v4+json",
+      "application/vnd.hedtech.integration.v4+json",
+      `academic-levels`,
+      args,
+      this.context.authorization
+    ).then(json => json);
   }
 
+  // https://xedocs.ellucian.com/xe-banner-api/ethos_apis/student/validation/academic_levels_update_id_v4.html
   update(args) {
-    // TODO: Implement
+    return this.putByURL(
+      "application/vnd.hedtech.integration.v4+json",
+      "application/vnd.hedtech.integration.v4+json",
+      `academic-levels/${args.id}`,
+      args,
+      this.context.authorization
+    ).then(json => json);
   }
 }
 

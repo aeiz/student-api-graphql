@@ -35,7 +35,7 @@ class AcademicCredentialService extends BaseService {
 
   // https://xedocs.ellucian.com/xe-banner-api/ethos_apis/student/validation/academic_credentials_update_id_v4.html
   update(args) {
-    return this.postByURL(
+    return this.putByURL(
       "application/vnd.hedtech.integration.v4+json",
       "application/vnd.hedtech.integration.v4+json",
       `academic-credentials/${args.id}`,

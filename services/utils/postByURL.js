@@ -14,6 +14,8 @@ export default function(
   debug(`FETCH: ${config.API_BASE_URL}/${relativeURL}`);
   debug(`FETCH ACCEPT HEADER: ${acceptHeader}`);
 
+  debug(request);
+
   return fetch(`${config.API_BASE_URL}/${relativeURL}`, {
     method: "POST",
     headers: {
@@ -21,7 +23,7 @@ export default function(
       Accept: acceptHeader,
       Authorization: authorization
     },
-    body: request
+    body: JSON.stringify(request)
   })
     .then(function(res) {
       debug(`FETCH RESPONSE CODE: ${res.status}`);
@@ -42,6 +44,12 @@ export default function(
         debug("FETCH ERROR: Access Denied for endpoint -> ", res.url);
         throw Error("Access Denied.");
       }
+
+      if (res.status === 404) {
+        debug("FETCH ERROR: Not Found for endpoint -> ", res.url);
+        throw Error("Not Found.");
+      }
+
       return res;
     })
     .then(res => {
