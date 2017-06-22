@@ -9,6 +9,8 @@ module.exports = {
   SERVER_ADDRESS: "localhost",
   // GraphQL Server Port Number
   SERVER_PORT: 3000,
+  // Crypto Algorithm
+  CRYPTO_ALGO: "aes-256-ctr",
   // JSON Web Token Secret
   JWT_SECRET: "shhhhh!",
   // JSON Web Token Expiration Duration (in minutes)
