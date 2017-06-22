@@ -21,14 +21,22 @@ const RootMutation = new GraphQLObjectType({
     createAcademicLevel: Mutations.createAcademicLevel,
     updateAcademicLevel: Mutations.updateAcademicLevel,
 
+    // createCourse: Mutations.createCourse,
+    // updateCourse: Mutations.updateCourse,
+
     createEthnicity: Mutations.createEthnicity,
     updateEthnicity: Mutations.updateEthnicity,
 
     createGradeChangeReason: Mutations.createGradeChangeReason,
     updateGradeChangeReason: Mutations.updateGradeChangeReason,
 
+    // updateGradeEntries: Mutations.updateGradeEntries,
+
     createGradeMode: Mutations.createGradeMode,
     updateGradeMode: Mutations.updateGradeMode,
+
+    // createInstructionalEvent: Mutations.createInstructionalEvent,
+    // updateInstructionalEvent: Mutations.updateInstructionalEvent,
 
     createInstructionalMethod: Mutations.createInstructionalMethod,
     updateInstructionalMethod: Mutations.updateInstructionalMethod,
@@ -36,14 +44,28 @@ const RootMutation = new GraphQLObjectType({
     createMaritalStatus: Mutations.createMaritalStatus,
     updateMaritalStatus: Mutations.updateMaritalStatus,
 
+    // createOrganization: Mutations.createOrganization,
+    // updateOrganization: Mutations.updateOrganization,
+
+    // createPerson: Mutations.createPerson,
+    // updatePerson: Mutations.updatePerson,
+
+    // updatePersonCredentials: Mutations.updatePersonCredentials,
+
     createRace: Mutations.createRace,
     updateRace: Mutations.updateRace,
 
     createRestrictionType: Mutations.createRestrictionType,
     updateRestrictionType: Mutations.updateRestrictionType,
 
+    // createSection: Mutations.createSection,
+    // updateSection: Mutations.updateSection,
+
+    // createSectionRegistration: Mutations.createSectionRegistration,
+    // updateSectionRegistration: Mutations.updateSectionRegistration,
+
     createSubject: Mutations.createSubject,
-    updateSubject: Mutations.updateSubject,
+    updateSubject: Mutations.updateSubject
   })
 });
 

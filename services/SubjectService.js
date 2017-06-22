@@ -24,24 +24,24 @@ class SubjectService extends BaseService {
 
   // https://xedocs.ellucian.com/xe-banner-api/ethos_apis/student/validation/subjects_create_v4.html
   create(args) {
-    return this.postByURL(
-      "application/vnd.hedtech.integration.v4+json",
-      "application/vnd.hedtech.integration.v4+json",
-      `subjects`,
-      args,
-      this.context.authorization
-    ).then(json => json);
+    return this.postByURL({
+      contentTypeHeader: "application/vnd.hedtech.integration.v4+json",
+      acceptHeader: "application/vnd.hedtech.integration.v4+json",
+      relativeURL: `subjects`,
+      request: args,
+      authorization: this.context.authorization
+    }).then(json => json);
   }
 
   // https://xedocs.ellucian.com/xe-banner-api/ethos_apis/student/validation/subjects_update_guid_v4.html
   update(args) {
-    return this.putByURL(
-      "application/vnd.hedtech.integration.v4+json",
-      "application/vnd.hedtech.integration.v4+json",
-      `subjects/${args.id}`,
-      args,
-      this.context.authorization
-    ).then(json => json);
+    return this.putByURL({
+      contentTypeHeader: "application/vnd.hedtech.integration.v4+json",
+      acceptHeader: "application/vnd.hedtech.integration.v4+json",
+      relativeURL: `subjects/${args.id}`,
+      request: args,
+      authorization: this.context.authorization
+    }).then(json => json);
   }
 }
 

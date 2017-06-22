@@ -24,24 +24,24 @@ class GradeModeService extends BaseService {
 
   // https://xedocs.ellucian.com/xe-banner-api/ethos_apis/student/validation/grade_modes_create.html
   create(args) {
-    return this.postByURL(
-      "application/vnd.hedtech.integration.v4+json",
-      "application/vnd.hedtech.integration.v4+json",
-      `grade-modes`,
-      args,
-      this.context.authorization
-    ).then(json => json);
+    return this.postByURL({
+      contentTypeHeader: "application/vnd.hedtech.integration.v4+json",
+      acceptHeader: "application/vnd.hedtech.integration.v4+json",
+      relativeURL: `grade-modes`,
+      request: args,
+      authorization: this.context.authorization
+    }).then(json => json);
   }
 
   // https://xedocs.ellucian.com/xe-banner-api/ethos_apis/student/validation/grade_modes_update.html
   update(args) {
-    return this.putByURL(
-      "application/vnd.hedtech.integration.v4+json",
-      "application/vnd.hedtech.integration.v4+json",
-      `grade-modes/${args.id}`,
-      args,
-      this.context.authorization
-    ).then(json => json);
+    return this.putByURL({
+      contentTypeHeader: "application/vnd.hedtech.integration.v4+json",
+      acceptHeader: "application/vnd.hedtech.integration.v4+json",
+      relativeURL: `grade-modes/${args.id}`,
+      request: args,
+      authorization: this.context.authorization
+    }).then(json => json);
   }
 }
 

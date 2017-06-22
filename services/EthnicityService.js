@@ -24,24 +24,24 @@ class EthnicityService extends BaseService {
 
   // https://xedocs.ellucian.com/xe-banner-api/ethos_apis/student/validation/ethnicities_create_v1.html
   create(args) {
-    return this.postByURL(
-      "application/vnd.hedtech.integration.v1+json",
-      "application/vnd.hedtech.integration.v1+json",
-      `ethnicities`,
-      {...args, guid: args.id},
-      this.context.authorization
-    ).then(json => json);
+    return this.postByURL({
+      contentTypeHeader: "application/vnd.hedtech.integration.v1+json",
+      acceptHeader: "application/vnd.hedtech.integration.v1+json",
+      relativeURL: `ethnicities`,
+      request: { ...args, guid: args.id },
+      authorization: this.context.authorization
+    }).then(json => json);
   }
 
   // https://xedocs.ellucian.com/xe-banner-api/ethos_apis/student/validation/ethnicities_update_guid_v1.html
   update(args) {
-    return this.putByURL(
-      "application/vnd.hedtech.integration.v1+json",
-      "application/vnd.hedtech.integration.v1+json",
-      `ethnicities/${args.id}`,
-      {...args, guid: args.id},
-      this.context.authorization
-    ).then(json => json);
+    return this.putByURL({
+      contentTypeHeader: "application/vnd.hedtech.integration.v1+json",
+      acceptHeader: "application/vnd.hedtech.integration.v1+json",
+      relativeURL: `ethnicities/${args.id}`,
+      request: { ...args, guid: args.id },
+      authorization: this.context.authorization
+    }).then(json => json);
   }
 }
 

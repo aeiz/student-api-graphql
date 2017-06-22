@@ -24,24 +24,24 @@ class InstructionalMethodService extends BaseService {
 
   // https://xedocs.ellucian.com/xe-banner-api/ethos_apis/student/validation/instructional_methods_create_v4.html
   create(args) {
-    return this.postByURL(
-      "application/vnd.hedtech.integration.v4+json",
-      "application/vnd.hedtech.integration.v4+json",
-      `instructional-methods`,
-      args,
-      this.context.authorization
-    ).then(json => json);
+    return this.postByURL({
+      contentTypeHeader: "application/vnd.hedtech.integration.v4+json",
+      acceptHeader: "application/vnd.hedtech.integration.v4+json",
+      relativeURL: `instructional-methods`,
+      request: args,
+      authorization: this.context.authorization
+    }).then(json => json);
   }
 
   // https://xedocs.ellucian.com/xe-banner-api/ethos_apis/student/validation/instructional_methods_update_id_v4.html
   update(args) {
-    return this.putByURL(
-      "application/vnd.hedtech.integration.v4+json",
-      "application/vnd.hedtech.integration.v4+json",
-      `instructional-methods/${args.id}`,
-      args,
-      this.context.authorization
-    ).then(json => json);
+    return this.putByURL({
+      contentTypeHeader: "application/vnd.hedtech.integration.v4+json",
+      acceptHeader: "application/vnd.hedtech.integration.v4+json",
+      relativeURL: `instructional-methods/${args.id}`,
+      request: args,
+      authorization: this.context.authorization
+    }).then(json => json);
   }
 }
 

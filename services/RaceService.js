@@ -24,24 +24,24 @@ class RaceService extends BaseService {
 
   // https://xedocs.ellucian.com/xe-banner-api/ethos_apis/student/validation/races_create_V4.html
   create(args) {
-    return this.postByURL(
-      "application/vnd.hedtech.integration.v4+json",
-      "application/vnd.hedtech.integration.v4+json",
-      `races`,
-      args,
-      this.context.authorization
-    ).then(json => json);
+    return this.postByURL({
+      contentTypeHeader: "application/vnd.hedtech.integration.v4+json",
+      acceptHeader: "application/vnd.hedtech.integration.v4+json",
+      relativeURL: `races`,
+      request: args,
+      authorization: this.context.authorization
+    }).then(json => json);
   }
 
   // https://xedocs.ellucian.com/xe-banner-api/ethos_apis/student/validation/races_update_id_V4.html
   update(args) {
-    return this.putByURL(
-      "application/vnd.hedtech.integration.v4+json",
-      "application/vnd.hedtech.integration.v4+json",
-      `races/${args.id}`,
-      args,
-      this.context.authorization
-    ).then(json => json);
+    return this.putByURL({
+      contentTypeHeader: "application/vnd.hedtech.integration.v4+json",
+      acceptHeader: "application/vnd.hedtech.integration.v4+json",
+      relativeURL: `races/${args.id}`,
+      request: args,
+      authorization: this.context.authorization
+    }).then(json => json);
   }
 }
 

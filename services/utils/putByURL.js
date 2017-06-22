@@ -4,23 +4,21 @@ import config from "../../config";
 
 const debug = createDebug("putByURL");
 
-export default function(
+export default function({
   contentTypeHeader,
   acceptHeader,
   relativeURL,
   request,
   authorization
-) {
+}) {
   debug(`PUT: ${config.API_BASE_URL}/${relativeURL}`);
   debug(`PUT ContentType HEADER: ${contentTypeHeader}`);
   debug(`PUT Accept HEADER: ${acceptHeader}`);
 
-  debug(request);
-  // TODO: fix issue with error 415
   return fetch(`${config.API_BASE_URL}/${relativeURL}`, {
     method: "PUT",
     headers: {
-      ContentType: contentTypeHeader,
+      "Content-Type": contentTypeHeader,
       Accept: acceptHeader,
       Authorization: authorization
     },
@@ -28,15 +26,6 @@ export default function(
   })
     .then(function(res) {
       debug(`PUT RESPONSE CODE: ${res.status}`);
-
-      debug(res);
-
-      /*
-      if(res.status === 400) {
-        debug("FETCH ERROR: Bad Request for endpoint -> ", res.url);
-        throw Error("Bad Request.");
-      }
-      */
 
       if (res.status === 401) {
         debug("PUT ERROR: Unauthorized for endpoint -> ", res.url);

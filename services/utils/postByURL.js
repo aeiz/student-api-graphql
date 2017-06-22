@@ -4,49 +4,41 @@ import config from "../../config";
 
 const debug = createDebug("postByURL");
 
-export default function(
+export default function({
   contentTypeHeader,
   acceptHeader,
   relativeURL,
   request,
   authorization
-) {
-  debug(`FETCH: ${config.API_BASE_URL}/${relativeURL}`);
-  debug(`FETCH ACCEPT HEADER: ${acceptHeader}`);
-
-  debug(request);
+}) {
+  debug(`POST: ${config.API_BASE_URL}/${relativeURL}`);
+  debug(`POST ContentType HEADER: ${contentTypeHeader}`);
+  debug(`POST Accept HEADER: ${acceptHeader}`);
 
   return fetch(`${config.API_BASE_URL}/${relativeURL}`, {
     method: "POST",
     headers: {
-      ContentType: contentTypeHeader,
+      "Content-Type": contentTypeHeader,
       Accept: acceptHeader,
       Authorization: authorization
     },
     body: JSON.stringify(request)
   })
     .then(function(res) {
-      debug(`FETCH RESPONSE CODE: ${res.status}`);
-
-      /*
-      if(res.status === 400) {
-        debug("FETCH ERROR: Bad Request for endpoint -> ", res.url);
-        throw Error("Bad Request.");
-      }
-      */
+      debug(`POST RESPONSE CODE: ${res.status}`);
 
       if (res.status === 401) {
-        debug("FETCH ERROR: Unauthorized for endpoint -> ", res.url);
+        debug("POST ERROR: Unauthorized for endpoint -> ", res.url);
         throw Error("Unauthorized.");
       }
 
       if (res.status === 403) {
-        debug("FETCH ERROR: Access Denied for endpoint -> ", res.url);
+        debug("POST ERROR: Access Denied for endpoint -> ", res.url);
         throw Error("Access Denied.");
       }
 
       if (res.status === 404) {
-        debug("FETCH ERROR: Not Found for endpoint -> ", res.url);
+        debug("POST ERROR: Not Found for endpoint -> ", res.url);
         throw Error("Not Found.");
       }
 
