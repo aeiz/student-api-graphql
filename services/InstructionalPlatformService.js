@@ -21,18 +21,6 @@ class InstructionalPlatformService extends BaseService {
       this.context.authorization
     ).then(json => json);
   }
-
-  create(args) {
-    // TODO: Implement
-    debug("CREATE: This feature is not implemented.");
-    throw Error("Create not implemented.");
-  }
-
-  update(args) {
-    // TODO: Implement
-    debug("UPDATE: This feature is not implemented.");
-    throw Error("Update not implemented.");
-  }
 }
 
 export { InstructionalPlatformService };
