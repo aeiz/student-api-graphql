@@ -13,15 +13,16 @@ npm install
 
 ## Configuration
 Edit [config.js](https://github.com/aeiz/student-api-graphql/blob/master/config.js) with your own settings.
-Config Option | Description | Default
------------- | -------------- | -------------
-API_BASE_URL | Point to your school's StudentAPI endpoint | https://api.university.edu/StudentApi/api
-SERVER_PROTOCOL | GraphQL Server Protocol (http or https) | http
-SERVER_ADDRESS | GraphQL Server Address | localhost
-SERVER_PORT | GraphQL Server Port Number | 3000
-CRYPTO_ALGO | Crypto Algorithm | aes-256-ctr
-JWT_SECRET | JSON Web Token Secret | shhhhh!
-JWT_EXPIRE | JSON Web Token Expiration Duration (in minutes) | 60
+
+Config Option   | Description                                     | Default
+--------------- | ----------------------------------------------- | -----------------------------------------
+API_BASE_URL    | Point to your school's StudentAPI endpoint      | https://api.university.edu/StudentApi/api
+SERVER_PROTOCOL | GraphQL Server Protocol (http or https)         | http
+SERVER_ADDRESS  | GraphQL Server Address                          | localhost
+SERVER_PORT     | GraphQL Server Port Number                      | 3000
+CRYPTO_ALGO     | Crypto Algorithm                                | aes-256-ctr
+JWT_SECRET      | JSON Web Token Secret                           | shhhhh!
+JWT_EXPIRE      | JSON Web Token Expiration Duration (in minutes) | 60
 
 ## Running the GraphQL Server
 <pre>
