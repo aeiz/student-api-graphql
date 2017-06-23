@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="//cdn.jsdelivr.net/react/15.4.2/react.min.js"></script>
+    <script src="//cdn.jsdelivr.net/react/15.4.2/react-dom.min.js"></script>
+
+    <link rel="stylesheet" href="voyager.css" />
+    <script src="voyager.min.js"></script>
+    <script src="introspectionResponse.js"></script>
+  </head>
+  <body>
+    <div id="voyager">Loading...</div>
+    <script>
+      GraphQLVoyager.init(document.getElementById('voyager'), {
+        introspection: introspectionResponse
+      })
+    </script>
+  </body>
+</html>

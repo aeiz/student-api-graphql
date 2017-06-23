@@ -3,12 +3,14 @@ import path from "path";
 import fs from "fs";
 import express from "express";
 import cors from "cors";
+import { graphql } from "graphql";
 import graphQLHTTP from "express-graphql";
 import { printSchema, printIntrospectionSchema } from "graphql/utilities";
 import { getAuthorization } from "./utils/authorization";
 import config from "./config";
 import schema from "./schema";
 import createLoaders from "./loaders";
+import introspectionQuery from "./introspectionQuery";
 
 const debug = createDebug("index");
 const app = express();
@@ -56,6 +58,22 @@ app.use("/schema", function(request, response) {
   });
 
   response.send(data);
+});
+
+app.use("/introspectionQuery", function(request, response) {
+  response.set("Content-Type", "text/plain");
+  graphql(schema, introspectionQuery).then(data => {
+    console.log(data);
+    let formattedData = "var introspectionResponse = " + JSON.stringify(data) + ";";
+    fs.writeFile("docs/introspectionResponse.js", formattedData, function(error) {
+      if (error) {
+        console.error("write error:  " + error.message);
+      } else {
+        debug("Successful wrote schema definition to introspectionResponse.js.");
+      }
+    });
+    response.send(data);
+  });
 });
 
 app.use("/introspectionSchema", function(request, response) {

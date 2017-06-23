@@ -2,9 +2,9 @@
   "name": "student-api-graphql",
   "version": "1.0.0",
   "description": "A GraphQL Wrapper for Ellucian's Banner Student REST API",
-  "repository" : {
-    "type" : "git",
-    "url" : "https://github.com/aeiz/student-api-graphql.git"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aeiz/student-api-graphql.git"
   },
   "main": "index.js",
   "scripts": {
@@ -41,6 +41,7 @@
     "debug": "^2.6.8",
     "express": "^4.15.2",
     "express-graphql": "^0.6.5",
+    "graphql": "^0.9.6",
     "graphql-voyager": "^1.0.0-rc.3",
     "isomorphic-fetch": "^2.2.1",
     "jsonwebtoken": "^7.4.1",
