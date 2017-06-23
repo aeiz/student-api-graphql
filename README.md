@@ -2,7 +2,7 @@
 A [GraphQL](http://graphql.org/) Wrapper for [Ellucian](http://www.ellucian.com/)'s Banner Student REST API
 
 ### Disclaimer
-This project is a work in progress!
+This project is a work in progress! This is also just a user-contributed project. I am not affiliated with Ellucian.
 
 ## Install
 <pre>
