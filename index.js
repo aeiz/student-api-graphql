@@ -17,7 +17,7 @@ const app = express();
 
 app.use(cors());
 app.options("/graphql", cors());
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "docs")));
 
 app.get("*", function(request, response, next) {
   let authorization = request.get("authorization");
@@ -82,7 +82,7 @@ app.use("/introspectionSchema", function(request, response) {
 });
 
 app.get("/", function(request, response) {
-  response.sendFile(path.resolve(__dirname, "public", "index.html"));
+  response.sendFile(path.resolve(__dirname, "docs", "voyager.html"));
 });
 
 app.listen(config.SERVER_PORT);
