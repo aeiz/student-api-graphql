@@ -34,6 +34,16 @@ Once the server is started, browse to http://localhost:3000/graphql to use [Grap
 ## Authentication
 This project relies on the authentication mechanism implemented in the StudentAPI (basic HTTP authentication) application.  However, I've exposed a mutation ([createAuthenticationToken](https://github.com/aeiz/student-api-graphql/blob/master/schema/mutations/AuthenticationMutation.js)) that enables authentication through JWTs ([JSON Web Tokens](https://jwt.io/)).  Either can be used.
 
+If you want to use JWTs, here's an example of the GraphQL mutation you would use to retrieve the token:
+<pre>
+mutation {
+  createAuthenticationToken(username: "username", password:"password") {
+    token
+    expires
+  }
+}
+</pre>
+
 ## Schema
 The schema is generated programmatically, but you can view the [schema language](http://graphql.org/learn/schema/) description by browsing to http://localhost:3000/schema when the server is running.  The schema language description is also saved in [schema.graphql](https://github.com/aeiz/student-api-graphql/blob/master/schema.graphql).
 
