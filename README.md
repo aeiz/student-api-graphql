@@ -31,6 +31,11 @@ JWT_EXPIRE      | JSON Web Token Expiration Duration (in minutes) | 60
 npm start
 </pre>
 
+Alternatively, if you use want to use [forever](https://www.npmjs.com/package/forever), there is a wrapper ([server.js](https://github.com/aeiz/student-api-graphql/blob/master/server.js)) to support running [babel-node](https://babeljs.io/) via forever:
+<pre>
+forever start server.js
+</pre>
+
 Once the server is started, browse to http://localhost:3000/graphql to use [GraphiQL](https://github.com/graphql/graphiql) (A graphical interactive in-browser GraphQL IDE).
 
 ## Authentication
