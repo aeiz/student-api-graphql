@@ -19,7 +19,7 @@ app.use(cors());
 app.options("/graphql", cors());
 app.use(express.static(path.join(__dirname, "docs")));
 
-app.get("*", function(request, response, next) {
+app.get("/graphql", function(request, response, next) {
   let authorization = request.get("authorization");
 
   if (!authorization) {
