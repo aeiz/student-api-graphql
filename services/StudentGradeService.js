@@ -5,11 +5,10 @@ class StudentGradeService extends BaseService {
   get(args) {
     this.debug("get:", args.id);
     let qs = this.createURLParameters(args);
-    return this.fetchResponseByURL(
-      "application/vnd.hedtech.v1+json",
-      `students/${args.id}/grades` + qs,
-      this.context.authorization
-    ).then(json => json);
+    return this.api.get({
+      acceptHeader: "application/vnd.hedtech.v1+json",
+      relativeURL: `students/${args.id}/grades` + qs,
+    });
   }
 }
 

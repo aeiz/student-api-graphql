@@ -1,18 +1,14 @@
 import createDebug from "debug";
 import DataLoader from "dataloader";
 import createURLParameters from "./utils/createURLParameters";
-import fetchResponseByURL from "./utils/fetchResponseByURL";
-import postByURL from "./utils/postByURL";
-import putByURL from "./utils/putByURL";
+import StudentAPI from "./utils/StudentAPI";
 
 class BaseService {
   constructor(context) {
     this.context = context;
     this.debug = createDebug(this.constructor.name);
     this.createURLParameters = createURLParameters;
-    this.fetchResponseByURL = fetchResponseByURL;
-    this.postByURL = postByURL;
-    this.putByURL = putByURL;
+    this.api = new StudentAPI(context);
   }
 
   load(id) {
@@ -56,6 +52,11 @@ class BaseService {
   update(args) {
     this.debug("UPDATE: This feature is not implemented.");
     throw Error("Update not implemented.");
+  }
+
+  delete(args) {
+    this.debug("DELETE: This feature is not implemented.");
+    throw Error("Delete not implemented.");
   }
 }
 

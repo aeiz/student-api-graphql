@@ -5,11 +5,10 @@ class FacultyAdvisorService extends BaseService {
   get(args) {
     this.debug("get:", args.id);
     let qs = this.createURLParameters(args);
-    return this.fetchResponseByURL(
-      "application/vnd.hedtech.v1+json",
-      `faculty-advisors/${args.id}` + qs,
-      this.context.authorization
-    ).then(json => json);
+    return this.api.get({
+      acceptHeader: "application/vnd.hedtech.v1+json",
+      relativeURL: `faculty-advisors/${args.id}` + qs
+    });
   }
 }
 

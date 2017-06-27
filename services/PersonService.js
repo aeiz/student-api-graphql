@@ -9,11 +9,10 @@ class PersonService extends BaseService {
   // https://xedocs.ellucian.com/xe-banner-api/ethos_apis/foundation/persons/person_get_guid_v6.html
   get(args) {
     this.debug("get:", args.id);
-    return this.fetchResponseByURL(
-      "application/vnd.hedtech.integration.v6+json",
-      `persons/${args.id}`,
-      this.context.authorization
-    ).then(json => json);
+    return this.api.get({
+      acceptHeader: "application/vnd.hedtech.integration.v6+json",
+      relativeURL: `persons/${args.id}`
+    });
   }
 
   // https://xedocs.ellucian.com/xe-banner-api/ethos_apis/foundation/persons/persons_get_v6.html
@@ -21,11 +20,10 @@ class PersonService extends BaseService {
     this.debug("list");
     // TODO: X-hedtech-totalCount ?
     let qs = this.createURLParameters(args);
-    return this.fetchResponseByURL(
-      "application/vnd.hedtech.integration.v6+json",
-      `persons` + qs,
-      this.context.authorization
-    ).then(json => json);
+    return this.api.list({
+      acceptHeader: "application/vnd.hedtech.integration.v6+json",
+      relativeURL: `persons` + qs,
+    });
   }
 
   create(args) {

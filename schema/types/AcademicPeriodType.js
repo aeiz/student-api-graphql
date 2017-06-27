@@ -22,6 +22,7 @@ const AcademicPeriodType = new GraphQLObjectType({
       resolve: (root, args, context) =>
         root.category.parent ? root.category.parent.id : null
     },
+    // TODO: auth problem?
     parent: {
       type: AcademicPeriodType,
       description: "The academic year in which term occurs.",

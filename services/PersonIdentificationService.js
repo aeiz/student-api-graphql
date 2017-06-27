@@ -19,22 +19,21 @@ class PersonIdentificationService extends BaseService {
   get(args) {
     this.debug("get:", args);
     let qs = this.createURLParameters(args);
-
-    return this.fetchResponseByURL(
-      "application/json",
-      `person-identifications` + qs,
-      this.context.authorization
-    ).then(json => json[0]);
+    return this.api
+      .get({
+        acceptHeader: "application/json",
+        relativeURL: `person-identifications` + qs
+      })
+      .then(json => json[0]);
   }
 
   list(args) {
-    this.debug("get:", args);
+    this.debug("list:", args);
     let qs = this.createURLParameters(args);
-    return this.fetchResponseByURL(
-      "application/json",
-      `person-identifications` + qs,
-      this.context.authorization
-    ).then(json => json);
+    return this.api.list({
+      acceptHeader: "application/json",
+      relativeURL: `person-identifications` + qs
+    });
   }
 }
 
