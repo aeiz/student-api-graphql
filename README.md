@@ -1,6 +1,8 @@
 # student-api-graphql
 A [GraphQL](http://graphql.org/) Wrapper for [Ellucian](http://www.ellucian.com/)'s Banner Student REST API
 
+[![Build Status](https://travis-ci.org/aeiz/student-api-graphql.svg?branch=master)](https://travis-ci.org/aeiz/student-api-graphql)
+
 This project's purpose is to aggregate all of the StudentAPI endpoints into a single GraphQL endpoint with intuitive types that are connected via the proper relationships. Using GraphQL to expose the StudentAPI endpoints offers many benefits, however considering it is just a wrapper, many of the limitations of the REST implementation remain.
 
 ### Disclaimer
