@@ -10,7 +10,6 @@
   "scripts": {
     "start": "nodemon ./index.js --exec babel-node",
     "forever": "forever start server.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --config webpack.production.config.js -p"
   },
   "author": "Michael Gillen <Michael.Gillen@colostate.edu>",
